@@ -1,0 +1,414 @@
+---
+---
+
+<section class="bento-section section reveal" id="features">
+  <div class="bento-container container">
+    <div class="bento-header reveal delay-100">
+      <h2 class="section-title">Engineered for the <span class="accent-text">local machine.</span></h2>
+      <p class="section-subtitle">Built entirely on native Git directives and Bash 3.2. No background processes, no node_modules, no latency.</p>
+    </div>
+
+    <div class="bento-grid">
+      
+      <!-- Card 1: The Boundary (2x2) -->
+      <div class="bento-card span-2x2 reveal delay-200 card-1">
+        <div class="bento-visual card-1-visual">
+          <div class="svg-flow-container">
+            <svg class="flow-lines" viewBox="0 0 100 100" preserveAspectRatio="none">
+              <path class="animated-path" d="M0 50 Q 25 20, 50 50 T 100 50" fill="none" stroke="currentColor" stroke-width="2" />
+            </svg>
+            <div class="lock-icon">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+            </div>
+          </div>
+        </div>
+        <div class="bento-content">
+          <h3>Cryptographic Sandboxing</h3>
+          <p>GitSetu leverages native Git <code>includeIf</code> directives to physically sandbox your repositories. Corporate keys and personal credentials never cross the boundary.</p>
+        </div>
+      </div>
+
+      <!-- Card 2: Performance (1x1) -->
+      <div class="bento-card span-1x1 reveal delay-300">
+        <div class="bento-visual icon-visual">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="accent-icon"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+        </div>
+        <div class="bento-content">
+          <h3>Zero-Dependency Core</h3>
+          <p>Pure Bash 3.2 execution means routing happens instantly without heavy runtimes.</p>
+        </div>
+      </div>
+
+      <!-- Card 3: Keychain (1x1) -->
+      <div class="bento-card span-1x1 reveal delay-400">
+        <div class="bento-visual icon-visual">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="accent-icon"><path d="M21 2l-2 2m-7.61 7.61a5.5 5.5 0 1 1-7.778 7.778 5.5 5.5 0 0 1 7.777-7.777zm0 0L15.5 7.5m0 0l3 3L22 7l-3-3m-3.5 3.5L19 4"></path></svg>
+        </div>
+        <div class="bento-content">
+          <h3>Hardware FIDO2</h3>
+          <p>Native support for YubiKey (<code>ed25519-sk</code>) bootstrapping.</p>
+        </div>
+      </div>
+
+      <!-- Card 4: Identity Guard (2x1) -->
+      <div class="bento-card span-2x1 reveal delay-200">
+        <div class="bento-visual icon-visual-large" style="min-height: 140px; background: rgba(255,255,255,0.01);">
+          <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="var(--color-error)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="opacity: 0.8; filter: drop-shadow(0 0 10px rgba(239, 68, 68, 0.4));">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+            <line x1="9" y1="9" x2="15" y2="15"></line>
+            <line x1="15" y1="9" x2="9" y2="15"></line>
+          </svg>
+        </div>
+        <div class="bento-content">
+          <h3>Pre-Commit Guard</h3>
+          <p>A fail-closed hook that physically blocks commits if your active email doesn't strictly match the required profile.</p>
+        </div>
+      </div>
+
+      <!-- Card 5: Automated Key Lifecycle (1x1) -->
+      <div class="bento-card span-1x1 reveal delay-300">
+        <div class="bento-visual icon-visual-large" style="min-height: 120px;">
+          <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="var(--color-success)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="opacity: 0.8; filter: drop-shadow(0 0 10px rgba(34, 197, 94, 0.4));">
+            <path d="M21 2l-2 2m-7.61 7.61a5.5 5.5 0 1 1-7.778 7.778 5.5 5.5 0 0 1 7.777-7.777zm0 0L15.5 7.5m0 0l3 3L22 7l-3-3m-3.5 3.5L19 4"></path>
+          </svg>
+        </div>
+        <div class="bento-content">
+          <h3>Automated Key Lifecycle</h3>
+          <p>GitSetu automatically generates and distributes ED25519 SSH keys per profile.</p>
+        </div>
+      </div>
+
+      <!-- Card 6: Encrypted Backup (3x1) -->
+      <div class="bento-card span-3x1 reveal delay-400">
+        <div class="vault-bg">
+          <svg viewBox="0 0 100 100" class="vault-mesh" preserveAspectRatio="none">
+            <!-- Background Grid -->
+            <pattern id="grid-pattern" width="8" height="8" patternUnits="userSpaceOnUse">
+              <path d="M 8 0 L 0 0 0 8" fill="none" stroke="rgba(255, 255, 255, 0.02)" stroke-width="0.5"/>
+            </pattern>
+            <rect width="100" height="100" fill="url(#grid-pattern)" />
+            
+            <!-- Server Racks / Data Blocks -->
+            <g stroke="rgba(255, 255, 255, 0.1)" stroke-width="0.5" fill="none">
+              <rect x="20" y="20" width="60" height="15" rx="2" />
+              <rect x="20" y="42.5" width="60" height="15" rx="2" stroke="rgba(255, 255, 255, 0.2)" />
+              <rect x="20" y="65" width="60" height="15" rx="2" />
+              
+              <!-- Status Lights -->
+              <circle cx="25" cy="27.5" r="1.5" fill="rgba(255, 255, 255, 0.2)" stroke="none" />
+              <circle cx="25" cy="50" r="1.5" fill="rgba(255, 255, 255, 0.6)" stroke="none" />
+              <circle cx="25" cy="72.5" r="1.5" fill="rgba(255, 255, 255, 0.2)" stroke="none" />
+              
+              <!-- Encrypted Data Lines -->
+              <line x1="30" y1="27.5" x2="70" y2="27.5" stroke-dasharray="2 2" />
+              <line x1="30" y1="50" x2="75" y2="50" stroke-dasharray="2 2" stroke="rgba(255, 255, 255, 0.3)" />
+              <line x1="30" y1="72.5" x2="60" y2="72.5" stroke-dasharray="2 2" />
+            </g>
+          </svg>
+        </div>
+        <div class="bento-content">
+          <div class="text-group" style="max-width: 60%;">
+            <h3>Encrypted Profile Backup</h3>
+            <p>Export your entire identity architecture. GitSetu uses AES-256 OpenSSL encryption to securely backup and restore your profiles across machines.</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<script>
+  document.addEventListener('astro:page-load', () => {
+    // Spotlights
+    const cards = document.querySelectorAll('.bento-card');
+    cards.forEach(card => {
+      card.addEventListener('mousemove', (e: any) => {
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        (card as HTMLElement).style.setProperty('--spotlight-x', `${x}px`);
+        (card as HTMLElement).style.setProperty('--spotlight-y', `${y}px`);
+      });
+    });
+  });
+</script>
+
+<style>
+  .bento-header {
+    margin-bottom: var(--space-4xl);
+  }
+
+  .bento-container {
+    width: 100%;
+  }
+
+  .bento-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-auto-rows: minmax(220px, auto);
+    grid-auto-flow: dense;
+    gap: var(--space-md);
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .bento-card {
+    background: transparent;
+    border: 1px solid var(--border-card);
+    border-radius: var(--radius-xl);
+    overflow: hidden;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    transition: all var(--transition-base);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+    z-index: 1;
+  }
+
+  /* Magic Borders */
+  @keyframes borderSpin {
+    100% { transform: rotate(360deg); }
+  }
+
+  .bento-card::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: conic-gradient(transparent, transparent, transparent, var(--accent-primary));
+    opacity: 0;
+    transition: opacity var(--transition-base);
+    z-index: -1;
+  }
+
+  .bento-card::after {
+    content: '';
+    position: absolute;
+    inset: 1px;
+    border-radius: calc(var(--radius-xl) - 1px);
+    background-color: var(--bg-secondary);
+    background-image: radial-gradient(circle at var(--spotlight-x, 50%) var(--spotlight-y, 50%), rgba(0, 196, 204, 0.05) 0%, transparent 500px);
+    z-index: -1;
+    transition: background-color var(--transition-base), background-image 0s;
+  }
+
+  .bento-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5), 0 0 20px rgba(0, 196, 204, 0.08);
+  }
+
+  .bento-card:hover::before {
+    opacity: 1;
+    animation: borderSpin 4s linear infinite;
+  }
+
+  .bento-card:hover::after {
+    background-color: var(--bg-tertiary);
+    background-image: radial-gradient(circle at var(--spotlight-x, 50%) var(--spotlight-y, 50%), rgba(0, 196, 204, 0.1) 0%, transparent 600px);
+  }
+
+  @keyframes blink {
+    50% { opacity: 0; }
+  }
+
+  /* Grid Spanning */
+  .span-2x2 { grid-column: span 2; grid-row: span 2; }
+  .span-2x1 { grid-column: span 2; grid-row: span 1; }
+  .span-1x1 { grid-column: span 1; grid-row: span 1; }
+  .span-3x1 { grid-column: span 3; grid-row: span 1; }
+
+  /* Content Inner */
+  .bento-content {
+    padding: var(--space-lg) var(--space-xl);
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    position: relative;
+    z-index: 2;
+  }
+
+  .bento-content h3 {
+    font-size: var(--text-xl);
+    margin-bottom: var(--space-sm);
+    color: var(--text-heading);
+  }
+
+  .bento-content p {
+    color: var(--text-secondary);
+    font-size: var(--text-sm);
+    line-height: 1.6;
+  }
+
+  .bento-content code {
+    background: var(--bg-code);
+    color: var(--accent-primary);
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 0.9em;
+    border: 1px solid var(--border-subtle);
+  }
+
+  /* Visuals Area */
+  .bento-visual {
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.01);
+    border-bottom: 1px solid var(--border-subtle);
+    position: relative;
+    overflow: hidden;
+    z-index: 0;
+  }
+
+  /* Card 1 Visual: Lock & Flow */
+  .card-1 .bento-content {
+    justify-content: center;
+    align-items: flex-start;
+    padding: var(--space-2xl) var(--space-xl);
+    width: 55%;
+    position: relative;
+    z-index: 2;
+  }
+
+  .card-1 h3 {
+    font-size: var(--text-3xl);
+    max-width: 100%;
+  }
+
+  .card-1 p {
+    font-size: var(--text-lg);
+    max-width: 100%;
+  }
+
+  .card-1-visual {
+    position: absolute;
+    inset: 0 0 0 auto;
+    width: 45%;
+    height: 100%;
+    opacity: 1;
+    z-index: 1;
+    border: none;
+    border-left: 1px solid var(--border-subtle);
+    background: radial-gradient(circle at center, rgba(0, 196, 204, 0.05) 0%, transparent 70%);
+  }
+  
+  .svg-flow-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .flow-lines {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    color: var(--accent-glow-strong);
+  }
+
+  .animated-path {
+    stroke-dasharray: 10 10;
+    animation: flowDash 15s linear infinite;
+  }
+
+  @keyframes flowDash {
+    to { stroke-dashoffset: -200; }
+  }
+  
+  .lock-icon {
+    position: relative;
+    color: var(--text-primary);
+    z-index: 2;
+    background: var(--bg-code);
+    padding: var(--space-md);
+    border-radius: var(--radius-full);
+    border: 1px solid var(--border-subtle);
+    box-shadow: 0 0 30px rgba(255, 255, 255, 0.05), inset 0 0 10px rgba(255, 255, 255, 0.05);
+  }
+
+  .icon-visual-large {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-bottom: 1px solid var(--border-subtle);
+  }
+
+  /* Metric Visual */
+  .metric-visual {
+    min-height: 120px;
+  }
+  .metric-value {
+    font-size: 3.5rem;
+    font-weight: 700;
+    color: var(--text-heading);
+    letter-spacing: -0.05em;
+  }
+  .metric-unit {
+    font-size: 1.5rem;
+    color: var(--accent-primary);
+  }
+
+  /* Icon Visual */
+  .icon-visual {
+    min-height: 120px;
+  }
+  .accent-icon {
+    color: var(--accent-primary);
+    width: 48px;
+    height: 48px;
+  }
+
+  /* Removed rotation CSS */
+
+  /* Standard Media Queries for predictable layout */
+  @media (max-width: 900px) {
+    .bento-grid {
+      grid-template-columns: 1fr 1fr;
+    }
+    .span-2x2, .span-3x1 {
+      grid-column: span 2;
+    }
+  }
+
+  @media (max-width: 600px) {
+    .bento-grid {
+      grid-template-columns: 1fr;
+    }
+    .span-2x2, .span-2x1, .span-3x1, .span-1x1 {
+      grid-column: span 1;
+    }
+    .text-group {
+      max-width: 100% !important;
+    }
+    .card-1 .bento-content {
+      width: 100%;
+      padding-bottom: 180px;
+    }
+    .card-1-visual {
+      inset: auto 0 0 0;
+      width: 100%;
+      height: 160px;
+      border-left: none;
+      border-top: 1px solid var(--border-subtle);
+    }
+  }
+
+  /* Vault Effect */
+  .vault-bg {
+    position: absolute; inset: 0; overflow: hidden; z-index: 0; pointer-events: none;
+    mask-image: radial-gradient(circle at center, black 0%, transparent 70%);
+    -webkit-mask-image: radial-gradient(circle at center, black 0%, transparent 70%);
+  }
+  .vault-mesh {
+    width: 100%; height: 100%;
+  }
+</style>

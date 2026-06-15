@@ -1,0 +1,129 @@
+---
+import { ClientRouter } from 'astro:transitions';
+import '../styles/global.css';
+import CommandPalette from '../components/CommandPalette.astro';
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const {
+  title = 'GitSetu — Zero-Dependency Git Identity Manager',
+  description = 'Manage multiple Git identities automatically. SSH keys, credentials, and commit signing — all in pure Bash 3.2. Zero dependencies.'
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+
+    <!-- OpenGraph -->
+    <meta property="og:title" content="GitSetu — Stop committing as the wrong person" />
+    <meta property="og:description" content="Auto-switch Git identity, SSH keys, and credentials by directory. Pure Bash. Zero deps." />
+    <meta property="og:image" content="https://gitsetu.bhaskarjha.dev/og-image.png" />
+    <meta property="og:url" content="https://gitsetu.bhaskarjha.dev" />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <!-- Canonical -->
+    <link rel="canonical" href="https://gitsetu.bhaskarjha.dev" />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@400;500;600;700&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet" />
+    <ClientRouter />
+    
+    <!-- JSON-LD Semantic Web -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "GitSetu",
+        "operatingSystem": "POSIX (Linux, macOS, WSL)",
+        "applicationCategory": "DeveloperApplication",
+        "softwareVersion": "1.1.0",
+        "softwareRequirements": "Bash 3.2+",
+        "offers": {
+          "@type": "Offer",
+          "price": "0.00",
+          "priceCurrency": "USD"
+        },
+        "description": "Zero-dependency orchestration engine that automatically routes SSH keys and credentials based on your directory. Enforces Zero-Trust identity for developers.",
+        "url": "https://gitsetu.bhaskarjha.dev",
+        "downloadUrl": "https://gitsetu.bhaskarjha.dev/install"
+      }
+    </script>
+
+    <script defer data-domain="gitsetu.bhaskarjha.dev" src="https://plausible.io/js/script.js"></script>
+  </head>
+  <body>
+    <global-manager>
+      <!-- Persistent Noise Overlay -->
+      <div class="noise-overlay"></div>
+      <CommandPalette />
+      <slot />
+    </global-manager>
+    
+    <script>
+      class GlobalManager extends HTMLElement {
+        private revealObserver: IntersectionObserver | null = null;
+        
+        private handleMousemove = (e: MouseEvent) => {
+          const x = (e.clientX / window.innerWidth) * 100;
+          const y = (e.clientY / window.innerHeight) * 100;
+          document.body.style.setProperty('--mouse-x', `${x}%`);
+          document.body.style.setProperty('--mouse-y', `${y}%`);
+        };
+
+        connectedCallback() {
+          // Spotlight Logic
+          document.addEventListener('mousemove', this.handleMousemove, { passive: true });
+
+          // Global Reveal on Scroll
+          const revealElements = this.querySelectorAll('.reveal');
+          
+          this.revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+              if (entry.isIntersecting) {
+                entry.target.classList.add('active');
+                // Optional: unobserve after revealing if you want it to trigger only once
+              }
+            });
+          }, {
+            root: null,
+            threshold: 0.1,
+            rootMargin: "0px 0px -50px 0px"
+          });
+
+          revealElements.forEach(el => this.revealObserver?.observe(el));
+        }
+
+        disconnectedCallback() {
+          document.removeEventListener('mousemove', this.handleMousemove);
+          if (this.revealObserver) {
+            this.revealObserver.disconnect();
+            this.revealObserver = null;
+          }
+        }
+      }
+
+      if (typeof window !== 'undefined' && !customElements.get('global-manager')) {
+        customElements.define('global-manager', GlobalManager);
+      }
+    </script>
+    <style>
+      global-manager {
+        display: contents; /* Does not affect layout flow */
+      }
+    </style>
+  </body>
+</html>

@@ -1,0 +1,89 @@
+---
+---
+
+<section class="philosophy reveal">
+  <div class="container philosophy-inner">
+    <div class="philosophy-text">
+      <p class="fade-text">
+        In Sanskrit, Setu (सेतु) means bridge —<br />
+        connecting two shores without disturbing either.
+      </p>
+      <div class="separator"></div>
+      <p class="fade-text delay-100">
+        Good security should not require developer discipline.<br />
+        The question of "Who committed this?" is no longer personal;<br />
+        it is architectural.
+      </p>
+      <div class="separator"></div>
+      <p class="philosophy-highlight delay-200">
+        A tool that demands your attention has failed.<br />
+        <span class="glow-text">GitSetu succeeds when you forget it exists.</span>
+      </p>
+    </div>
+  </div>
+</section>
+
+<style>
+  .philosophy {
+    background: transparent;
+    padding-top: var(--space-5xl);
+    padding-bottom: var(--space-4xl);
+    position: relative;
+    z-index: 10;
+  }
+
+  .philosophy-inner {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+  }
+
+  .philosophy-text {
+    max-width: 800px;
+    font-size: var(--text-xl);
+    line-height: 1.8;
+    color: var(--text-secondary);
+  }
+
+  .fade-text {
+    color: var(--text-muted);
+    transition: color var(--transition-base);
+  }
+  
+  .fade-text:hover {
+    color: var(--text-primary);
+  }
+
+  .separator {
+    width: 1px;
+    height: 40px;
+    background: linear-gradient(to bottom, transparent, rgba(0, 196, 204, 0.3), transparent);
+    margin: var(--space-xl) auto;
+  }
+
+  .philosophy-highlight {
+    font-weight: 500;
+    font-size: var(--text-2xl);
+    color: var(--text-heading);
+    letter-spacing: -0.02em;
+  }
+
+  .glow-text {
+    background: var(--gradient-accent);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0 0 30px rgba(0, 196, 204, 0.4);
+    font-weight: 700;
+    display: inline-block;
+    margin-top: var(--space-md);
+  }
+
+  @media (max-width: 768px) {
+    .philosophy-text {
+      font-size: var(--text-lg);
+    }
+    .philosophy-highlight {
+      font-size: var(--text-xl);
+    }
+  }
+</style>

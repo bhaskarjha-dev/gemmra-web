@@ -1,0 +1,397 @@
+---
+import TerminalDemo from './TerminalDemo.astro';
+---
+
+<section class="hero section reveal" id="install">
+  <div class="hero-container container">
+    
+    <div class="hero-content">
+      <!-- Badge -->
+      <div class="hero-badge reveal delay-100">
+        <span class="badge-dot"></span>
+        <span class="badge-text">v1.1.0 — Enterprise Ready</span>
+      </div>
+      
+      <h1 class="hero-title">
+        The Zero-Trust <br/>
+        <span class="text-gradient">Identity Guard</span> for Git.
+      </h1>
+      
+      <p class="hero-subtitle">
+        Stop leaking credentials and committing to the wrong profiles. GitSetu cryptographically sandboxes your work, personal, and client identities with zero background processes.
+      </p>
+
+      <!-- CTA & Command -->
+      <div class="hero-actions reveal delay-300">
+        <copy-button class="install-block group magnetic">
+          <code class="install-command" id="install-cmd" tabindex="0">curl -sL https://gitsetu.bhaskarjha.dev/install | bash</code>
+          <button class="copy-btn" aria-label="Copy install command" type="button">
+            <svg class="copy-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+            <svg class="check-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none"><polyline points="20 6 9 17 4 12"/></svg>
+          </button>
+        </copy-button>
+        <a href="/docs/getting-started/quickstart" class="btn btn-primary magnetic">
+          Read Docs 
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+        </a>
+      </div>
+
+      <!-- Trust Badges -->
+      <div class="hero-trust reveal delay-300">
+        <div class="trust-item">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-success"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+          Zero Trust
+        </div>
+        <div class="trust-item">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-accent"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+          FIDO2 Ready
+        </div>
+        <div class="trust-item">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-secondary"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg>
+          Bash 3.2 Core
+        </div>
+      </div>
+    </div>
+
+    <!-- Product As Demo (Shifted Top-Right) -->
+    <div class="hero-visual reveal delay-200">
+      <div class="mesh-gradient"></div>
+      <div class="terminal-glow"></div>
+      <!-- Interactive Terminal Setup Demo -->
+      <TerminalDemo />
+    </div>
+
+  </div>
+</section>
+
+<script>
+  class CopyButton extends HTMLElement {
+    private timeoutId: number | null = null;
+
+    connectedCallback() {
+      const copyBtn = this.querySelector('.copy-btn') as HTMLButtonElement;
+      const installCmd = this.querySelector('.install-command') as HTMLElement;
+      const copyIcon = this.querySelector('.copy-icon') as HTMLElement;
+      const checkIcon = this.querySelector('.check-icon') as HTMLElement;
+
+      copyBtn?.addEventListener('click', async () => {
+        if (this.timeoutId) {
+          clearTimeout(this.timeoutId);
+        }
+        
+        try {
+          await navigator.clipboard.writeText(installCmd?.textContent?.trim() || '');
+          if (copyIcon) copyIcon.style.display = 'none';
+          if (checkIcon) checkIcon.style.display = 'block';
+          
+          this.timeoutId = window.setTimeout(() => {
+            if (copyIcon) copyIcon.style.display = 'block';
+            if (checkIcon) checkIcon.style.display = 'none';
+            this.timeoutId = null;
+          }, 2000);
+        } catch {
+          const range = document.createRange();
+          if (installCmd) range.selectNodeContents(installCmd);
+          window.getSelection()?.removeAllRanges();
+          window.getSelection()?.addRange(range);
+        }
+      });
+    }
+  }
+
+  if (!customElements.get('copy-button')) {
+    customElements.define('copy-button', CopyButton);
+  }
+
+  // Magnetic Buttons & 3D Magnetic Terminal
+  document.addEventListener('astro:page-load', () => {
+    // Magnetic Buttons
+    const magneticEls = document.querySelectorAll('.magnetic');
+    magneticEls.forEach((el) => {
+      const htmlEl = el as HTMLElement;
+      htmlEl.addEventListener('mousemove', (e) => {
+        const rect = htmlEl.getBoundingClientRect();
+        const x = e.clientX - rect.left - rect.width / 2;
+        const y = e.clientY - rect.top - rect.height / 2;
+        htmlEl.style.transform = `translate(${x * 0.1}px, ${y * 0.1}px)`;
+      });
+      htmlEl.addEventListener('mouseleave', () => {
+        htmlEl.style.transform = 'translate(0px, 0px)';
+      });
+    });
+
+    const heroVisual = document.querySelector('.hero-visual') as HTMLElement;
+    const terminalNode = document.querySelector('gitsetu-terminal') as HTMLElement;
+    
+    if (heroVisual && terminalNode) {
+      heroVisual.addEventListener('mousemove', (e) => {
+        const rect = heroVisual.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        
+        const centerX = rect.width / 2;
+        const centerY = rect.height / 2;
+        
+        const rotateX = ((y - centerY) / centerY) * -10;
+        const rotateY = ((x - centerX) / centerX) * 10;
+        
+        terminalNode.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
+      });
+      
+      heroVisual.addEventListener('mouseleave', () => {
+        terminalNode.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)`;
+      });
+    }
+  });
+</script>
+
+<style>
+  .hero {
+    padding-top: calc(var(--nav-height) + var(--space-2xl));
+    padding-bottom: var(--space-4xl);
+    position: relative;
+  }
+
+  /* Fluid Container Architecture */
+  .hero-container {
+    display: grid;
+    grid-template-columns: 1.05fr 0.95fr;
+    gap: var(--space-3xl);
+    align-items: start;
+    position: relative;
+    z-index: 10;
+  }
+
+  .hero-content {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    text-align: left;
+  }
+
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-sm);
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: var(--radius-full);
+    padding: var(--space-xs) var(--space-md);
+    font-size: var(--text-sm);
+    color: var(--text-primary);
+    margin-bottom: var(--space-xl);
+    backdrop-filter: blur(10px);
+  }
+
+  .badge-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--color-success);
+    box-shadow: 0 0 10px var(--color-success);
+    animation: pulse 3s ease-in-out infinite;
+  }
+
+  .hero-title {
+    /* Using clamp for true fluid typography */
+    font-size: clamp(2rem, 8vw, 4.5rem);
+    margin-bottom: var(--space-lg);
+    line-height: 1.05;
+  }
+
+  .hero-subtitle {
+    margin-bottom: var(--space-2xl);
+    font-size: var(--text-lg);
+    color: #d4d4d8;
+    max-width: 95%;
+    line-height: 1.7;
+  }
+
+  .hero-actions {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    gap: var(--space-md);
+    margin-bottom: var(--space-2xl);
+    width: 100%;
+  }
+
+  copy-button.install-block {
+    background: var(--bg-code);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-md);
+    padding: var(--space-sm) var(--space-md);
+    display: flex;
+    align-items: center;
+    min-width: 0;
+    width: 100%;
+    gap: var(--space-md);
+    transition: transform 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94), border-color var(--transition-fast), box-shadow var(--transition-fast);
+  }
+
+  copy-button.install-block:hover {
+    border-color: var(--border-accent);
+    box-shadow: var(--shadow-glow);
+  }
+
+  .install-command {
+    display: block;
+    flex: 1;
+    min-width: 0;
+    color: var(--text-primary);
+    overflow-x: auto;
+    white-space: nowrap;
+    scrollbar-width: none;
+    text-align: left;
+  }
+  .install-command::-webkit-scrollbar { display: none; }
+
+  .copy-btn {
+    background: none;
+    border: none;
+    color: var(--text-muted);
+    cursor: pointer;
+    padding: 4px;
+    transition: color var(--transition-fast);
+  }
+  .copy-btn:hover { color: var(--text-primary); }
+
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-sm);
+    background: var(--gradient-accent);
+    color: #000000;
+    padding: 12px 24px;
+    border-radius: var(--radius-md);
+    font-weight: 700;
+    box-shadow: 0 0 20px var(--accent-glow-strong);
+    transition: transform 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94), box-shadow var(--transition-fast);
+  }
+  .btn-primary:hover {
+    box-shadow: 0 0 30px var(--accent-primary);
+  }
+
+  .hero-trust {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: center;
+    gap: var(--space-lg);
+    font-size: var(--text-sm);
+    color: var(--text-secondary);
+    font-family: var(--font-mono);
+  }
+
+  .trust-item {
+    display: flex;
+    align-items: center;
+    gap: var(--space-xs);
+    position: relative;
+    padding: 6px 12px;
+    border-radius: var(--radius-full);
+    background: rgba(255,255,255,0.02);
+    border: 1px solid var(--border-subtle);
+    overflow: hidden;
+  }
+
+  .trust-item::after {
+    content: '';
+    position: absolute;
+    top: 0; left: -100%; width: 50%; height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.08), transparent);
+    transition: left 0.5s ease-in-out;
+  }
+  .trust-item:hover::after {
+    left: 150%;
+  }
+
+  .text-success { color: var(--color-success); }
+  .text-accent { color: var(--accent-primary); }
+
+  /* Hero Visual - Product as Demo */
+  .hero-visual {
+    position: relative;
+    width: 100%;
+    align-self: start;
+    margin-top: 0;
+    container-type: inline-size;
+    perspective: 1000px;
+    z-index: 10;
+  }
+
+  /* Target the web component for 3D */
+  gitsetu-terminal {
+    display: block;
+    transition: transform 0.1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    will-change: transform;
+    transform-style: preserve-3d;
+  }
+
+  .mesh-gradient {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate3d(-50%, -50%, 0);
+    width: 120%;
+    height: 120%;
+    background: radial-gradient(circle at 20% 30%, rgba(0, 196, 204, 0.08) 0%, transparent 50%),
+                radial-gradient(circle at 80% 70%, rgba(14, 165, 233, 0.08) 0%, transparent 50%);
+    filter: blur(60px);
+    z-index: -2;
+  }
+
+  .terminal-glow {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    aspect-ratio: 1/1;
+    background: conic-gradient(from 180deg at 50% 50%, rgba(0, 196, 204, 0) 0deg, rgba(0, 196, 204, 0.1) 180deg, rgba(0, 196, 204, 0) 360deg);
+    filter: blur(80px);
+    border-radius: 50%;
+    z-index: -1;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.3; }
+  }
+
+  .hero-content, .hero-visual {
+    min-width: 0; /* CRITICAL: Prevents CSS Grid blowout on mobile */
+  }
+
+  /* Responsive Adjustments */
+  @media (max-width: 900px) {
+    .hero-container {
+      grid-template-columns: minmax(0, 1fr);
+      text-align: center;
+      gap: var(--space-4xl);
+    }
+    .hero-content {
+      align-items: center;
+      text-align: center;
+    }
+    .hero-subtitle {
+      max-width: 100%;
+    }
+    .hero-actions {
+      justify-content: center;
+    }
+    .hero-trust {
+      justify-content: center;
+    }
+  }
+  @media (max-width: 600px) {
+    .hero-actions {
+      flex-direction: column;
+      align-items: stretch;
+    }
+    .btn-primary {
+      justify-content: center;
+    }
+  }
+</style>

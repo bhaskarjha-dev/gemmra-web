@@ -1,0 +1,30 @@
+# Dependencies
+node_modules/
+
+# Astro build output
+dist/
+.astro/
+
+# Internal build specs
+.plan/
+
+# Environment
+.env
+.env.*
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Editor
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Dynamically fetched documentation
+src/pages/docs/
+
+# Generated Artifacts
+public/llms.txt
