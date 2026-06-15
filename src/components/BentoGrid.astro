@@ -1,16 +1,16 @@
 ---
 ---
 
-<section class="bento-section section reveal" id="features">
+<section class="bento-section section reveal" id="architecture">
   <div class="bento-container container">
     <div class="bento-header reveal delay-100">
-      <h2 class="section-title">Engineered for the <span class="accent-text">local machine.</span></h2>
-      <p class="section-subtitle">Built entirely on native Git directives and Bash 3.2. No background processes, no node_modules, no latency.</p>
+      <h2 class="section-title">Engineered on <span class="accent-text">AMD MI300X.</span></h2>
+      <p class="section-subtitle">Full bf16 precision, zero quantization, LoRA r=64. Every architectural choice leverages AMD's 192 GB HBM3 advantage.</p>
     </div>
 
     <div class="bento-grid">
       
-      <!-- Card 1: The Boundary (2x2) -->
+      <!-- Card 1: bf16 LoRA (2x2) -->
       <div class="bento-card span-2x2 reveal delay-200 card-1">
         <div class="bento-visual card-1-visual">
           <div class="svg-flow-container">
@@ -18,67 +18,67 @@
               <path class="animated-path" d="M0 50 Q 25 20, 50 50 T 100 50" fill="none" stroke="currentColor" stroke-width="2" />
             </svg>
             <div class="lock-icon">
-              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="2" ry="2"/><rect x="9" y="9" width="6" height="6"/><path d="M9 1v3M15 1v3M9 20v3M15 20v3M20 9h3M20 15h3M1 9h3M1 15h3"/></svg>
             </div>
           </div>
         </div>
         <div class="bento-content">
-          <h3>Cryptographic Sandboxing</h3>
-          <p>GitSetu leverages native Git <code>includeIf</code> directives to physically sandbox your repositories. Corporate keys and personal credentials never cross the boundary.</p>
+          <h3>bf16 LoRA Training</h3>
+          <p>Full bf16 precision with LoRA rank 64 on MI300X. Zero quantization = zero gradient noise. <code>LoRA r=64</code></p>
         </div>
       </div>
 
-      <!-- Card 2: Performance (1x1) -->
+      <!-- Card 2: Thinking Mode (1x1) -->
       <div class="bento-card span-1x1 reveal delay-300">
         <div class="bento-visual icon-visual">
-          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="accent-icon"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="accent-icon"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
         </div>
         <div class="bento-content">
-          <h3>Zero-Dependency Core</h3>
-          <p>Pure Bash 3.2 execution means routing happens instantly without heavy runtimes.</p>
+          <h3>Extended Thinking Mode</h3>
+          <p>Gemma 4's native thinking mode generates visible reasoning traces — the audit trail regulators require. <code>enable_thinking=True</code></p>
         </div>
       </div>
 
-      <!-- Card 3: Keychain (1x1) -->
+      <!-- Card 3: Data-First Debugging (1x1) -->
       <div class="bento-card span-1x1 reveal delay-400">
         <div class="bento-visual icon-visual">
-          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="accent-icon"><path d="M21 2l-2 2m-7.61 7.61a5.5 5.5 0 1 1-7.778 7.778 5.5 5.5 0 0 1 7.777-7.777zm0 0L15.5 7.5m0 0l3 3L22 7l-3-3m-3.5 3.5L19 4"></path></svg>
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="accent-icon"><path d="M12 22c5.523 0 10-2.239 10-5V5c0-2.761-4.477-5-10-5S2 2.239 2 5v12c0 2.761 4.477 5 10 5z"/><path d="M22 5c0 2.761-4.477 5-10 5S2 7.761 2 5"/><path d="M22 11c0 2.761-4.477 5-10 5S2 13.761 2 11"/></svg>
         </div>
         <div class="bento-content">
-          <h3>Hardware FIDO2</h3>
-          <p>Native support for YubiKey (<code>ed25519-sk</code>) bootstrapping.</p>
+          <h3>Data-First Debugging</h3>
+          <p>Our biggest gain came from fixing one data pipeline bug, not hyperparameter tuning. Data quality &gt; model tricks. <code>3.9× improvement</code></p>
         </div>
       </div>
 
-      <!-- Card 4: Identity Guard (2x1) -->
+      <!-- Card 4: Hierarchical Evaluation (2x1) -->
       <div class="bento-card span-2x1 reveal delay-200">
         <div class="bento-visual icon-visual-large" style="min-height: 140px; background: rgba(255,255,255,0.01);">
-          <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="var(--color-error)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="opacity: 0.8; filter: drop-shadow(0 0 10px rgba(239, 68, 68, 0.4));">
-            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
-            <line x1="9" y1="9" x2="15" y2="15"></line>
-            <line x1="15" y1="9" x2="9" y2="15"></line>
+          <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="var(--accent-primary)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="opacity: 0.8; filter: drop-shadow(0 0 10px rgba(0, 196, 204, 0.4));">
+            <line x1="18" y1="20" x2="18" y2="10"></line>
+            <line x1="12" y1="20" x2="12" y2="4"></line>
+            <line x1="6" y1="20" x2="6" y2="14"></line>
           </svg>
         </div>
         <div class="bento-content">
-          <h3>Pre-Commit Guard</h3>
-          <p>A fail-closed hook that physically blocks commits if your active email doesn't strictly match the required profile.</p>
+          <h3>Hierarchical Evaluation</h3>
+          <p>Novel 4-level scoring: exact → synonym → fuzzy → SOC match. 3,560 decontaminated evaluation samples. <code>Gemmra-Bench</code></p>
         </div>
       </div>
 
-      <!-- Card 5: Automated Key Lifecycle (1x1) -->
+      <!-- Card 5: FAERS Pipeline (1x1) -->
       <div class="bento-card span-1x1 reveal delay-300">
         <div class="bento-visual icon-visual-large" style="min-height: 120px;">
           <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="var(--color-success)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="opacity: 0.8; filter: drop-shadow(0 0 10px rgba(34, 197, 94, 0.4));">
-            <path d="M21 2l-2 2m-7.61 7.61a5.5 5.5 0 1 1-7.778 7.778 5.5 5.5 0 0 1 7.777-7.777zm0 0L15.5 7.5m0 0l3 3L22 7l-3-3m-3.5 3.5L19 4"></path>
+            <path d="M22 12h-4l-3 9L9 3l-3 9H2"></path>
           </svg>
         </div>
         <div class="bento-content">
-          <h3>Automated Key Lifecycle</h3>
-          <p>GitSetu automatically generates and distributes ED25519 SSH keys per profile.</p>
+          <h3>FAERS Pipeline</h3>
+          <p>Automated ingestion of 29 quarters of FDA adverse event data (2019Q1–2026Q1) via DuckDB. <code>29 quarters</code></p>
         </div>
       </div>
 
-      <!-- Card 6: Encrypted Backup (3x1) -->
+      <!-- Card 6: Published Negative Results (3x1) -->
       <div class="bento-card span-3x1 reveal delay-400">
         <div class="vault-bg">
           <svg viewBox="0 0 100 100" class="vault-mesh" preserveAspectRatio="none">
@@ -108,8 +108,8 @@
         </div>
         <div class="bento-content">
           <div class="text-group" style="max-width: 60%;">
-            <h3>Encrypted Profile Backup</h3>
-            <p>Export your entire identity architecture. GitSetu uses AES-256 OpenSSL encryption to securely backup and restore your profiles across machines.</p>
+            <h3>Published Negative Results</h3>
+            <p>We documented what didn't work. RL approaches failed due to reward variance collapse — adding scientific rigor. <code>GRPO/DAPO/RAFT</code></p>
           </div>
         </div>
       </div>

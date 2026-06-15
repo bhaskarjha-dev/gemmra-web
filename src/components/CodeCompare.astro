@@ -4,8 +4,8 @@
 <section class="code-compare section reveal" id="compare">
   <div class="compare-container container">
     <div class="compare-header reveal delay-100">
-      <h2 class="section-title">The <span class="accent-text">end of</span> alias scripts.</h2>
-      <p class="section-subtitle">Stop managing horrific SSH aliases and manual `git config` overrides. GitSetu handles it natively at the OS level.</p>
+      <h2 class="section-title">The <span class="accent-text">end of</span> manual case review.</h2>
+      <p class="section-subtitle">Stop spending 30 minutes per ICSR report. Gemmra processes each case in under 5 seconds with full audit trail.</p>
     </div>
 
     <div class="compare-split reveal delay-200">
@@ -13,45 +13,56 @@
       <!-- The Old Way -->
       <div class="code-panel old-way">
         <div class="panel-header">
-          <span class="panel-label error-label">The Old Way</span>
-          <span class="file-name">~/.ssh/config</span>
+          <span class="panel-label error-label">Manual Review</span>
+          <span class="file-name">ICSR Workflow</span>
         </div>
         <div class="panel-body">
-          <pre><code><span class="comment"># I hope I remember to use git@github-work.com...</span>
-<span class="keyword">Host</span> github-work.com
-  <span class="keyword">HostName</span> github.com
-  <span class="keyword">User</span> git
-  <span class="keyword">IdentityFile</span> ~/.ssh/id_rsa_work
-  <span class="keyword">IdentitiesOnly</span> yes
+          <pre><code><span class="keyword">📋 Manual ICSR Review Process:</span>
 
-<span class="keyword">Host</span> github-personal.com
-  <span class="keyword">HostName</span> github.com
-  <span class="keyword">User</span> git
-  <span class="keyword">IdentityFile</span> ~/.ssh/id_rsa_personal
+1. Read case narrative (~5 min)
+2. Check ICH E2A seriousness criteria (~5 min)
+3. Search MedDRA dictionary (~8 min)
+4. Cross-reference drug label (~7 min)
+5. Assess WHO-UMC causality (~5 min)
+6. Write structured report (~10 min)
 
-<span class="comment"># ...and 15 other random aliases</span></code></pre>
+⏱ Total: ~30 minutes per case
+📊 2,000,000 cases/year (FDA alone)
+💰 $20 per case = $40M+/year</code></pre>
         </div>
         <div class="panel-footer error-footer">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
-          Error-prone, leaks identities globally.
+          ✗ Slow, inconsistent, unscalable.
         </div>
       </div>
 
-      <!-- The GitSetu Way -->
+      <!-- The Gemmra Way -->
       <div class="code-panel new-way">
         <div class="panel-header">
-          <span class="panel-label success-label">The GitSetu Way</span>
-          <span class="file-name">~/.ssh/config</span>
+          <span class="panel-label success-label">The Gemmra Way</span>
+          <span class="file-name">AI Pipeline</span>
         </div>
         <div class="panel-body">
-          <pre><code><span class="comment"># GitSetu handles everything dynamically.</span>
-<span class="comment"># Just use 'git@github.com'.</span>
+          <pre><code><span class="keyword">🧠 Gemmra AI Assessment:</span>
 
-<span class="keyword">Include</span> ~/.config/gitsetu/ssh/*</code></pre>
+Input: Case narrative
+  ↓
+<span class="comment">&lt;thinking&gt;
+  Analyzing ICH E2A criteria...
+  Mapping to MedDRA ontology...
+  Checking drug label database...
+  Evaluating WHO-UMC causality...
+&lt;/thinking&gt;</span>
+  ↓
+Output: 4 structured assessments
+  with auditable reasoning trace
+
+⏱ Total: ~5 seconds per case
+💰 $0.005 per case = $10K/year</code></pre>
         </div>
         <div class="panel-footer success-footer">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
-          Idempotent, Zero-Trust, Automatic.
+          ✓ Fast. Auditable. 4,000× cheaper.
         </div>
       </div>
 
