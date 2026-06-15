@@ -182,43 +182,7 @@
     margin-left: auto;
   }
 
-  /* Command Palette Button */
-  @keyframes shimmer {
-    0% { background-position: -200% 0; }
-    100% { background-position: 200% 0; }
-  }
 
-  .cmd-palette-btn {
-    display: flex;
-    align-items: center;
-    gap: var(--space-sm);
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(255, 255, 255, 0.15);
-    border-radius: var(--radius-full);
-    padding: 6px 14px;
-    color: var(--text-primary);
-    font-size: var(--text-sm);
-    cursor: pointer;
-    transition: all var(--transition-fast);
-  }
-  .cmd-palette-btn:hover {
-    background: rgba(255, 255, 255, 0.1);
-    color: var(--text-heading);
-    border-color: var(--border-accent);
-    box-shadow: 0 0 10px var(--accent-glow);
-  }
-  .cmd-palette-btn kbd {
-    margin-left: var(--space-md);
-    background: linear-gradient(120deg, rgba(0,0,0,0.6) 25%, rgba(0, 229, 255, 0.3) 50%, rgba(0,0,0,0.6) 75%);
-    background-size: 200% 100%;
-    animation: shimmer 3s infinite linear;
-    border: 1px solid var(--border-card);
-    padding: 2px 6px;
-    border-radius: 4px;
-    font-size: 11px;
-    font-family: var(--font-mono);
-    color: var(--text-secondary);
-  }
 
   .github-link {
     display: flex;
@@ -230,29 +194,7 @@
     color: var(--text-primary);
   }
 
-  .btn {
-    display: inline-flex;
-    align-items: center;
-    padding: 6px 16px;
-    border-radius: var(--radius-full);
-    font-size: var(--text-sm);
-    font-weight: 600;
-    text-decoration: none;
-    transition: all var(--transition-fast);
-  }
 
-  .btn-outline {
-    color: var(--text-primary);
-    border: 1px solid var(--border-card);
-    background: rgba(255, 255, 255, 0.03);
-  }
-
-  .btn-outline:hover {
-    border-color: var(--border-accent);
-    color: var(--accent-primary);
-    background: rgba(0, 229, 255, 0.05);
-    box-shadow: 0 0 15px var(--accent-glow);
-  }
 
   /* Mobile Nav Button */
   .mobile-nav-toggle {
@@ -287,18 +229,8 @@
       border-top: none;
     }
     
-    .nav-actions .github-link,
-    .nav-actions .cmd-text,
-    .nav-actions .btn-outline {
+    .nav-actions .github-link {
       display: none !important;
-    }
-
-    .cmd-palette-btn {
-      padding: 8px;
-      border-radius: 8px;
-    }
-    .cmd-palette-btn kbd {
-      display: none; /* Hide shortcut key on mobile */
     }
 
     .mobile-nav-toggle {

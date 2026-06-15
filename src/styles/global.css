@@ -36,6 +36,10 @@ html {
   --accent-glow: rgba(0, 196, 204, 0.12);
   --accent-glow-strong: rgba(0, 196, 204, 0.25);
 
+  /* AMD Branding */
+  --accent-amd-red: #ED1C24;
+  --accent-amd-red-glow: rgba(237, 28, 36, 0.15);
+
   /* Status colors */
   --color-success: #10b981;
   --color-warning: #f59e0b;
