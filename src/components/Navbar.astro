@@ -6,7 +6,14 @@
     <div class="nav-brand">
       <a href="/">
         <svg class="brand-logo" width="24" height="24" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <rect width="32" height="32" rx="8" fill="#00c4cc"/>
+          <defs>
+            <linearGradient id="logo-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#0f62fe" />
+              <stop offset="50%" stop-color="#6366f1" />
+              <stop offset="100%" stop-color="#ED1C24" />
+            </linearGradient>
+          </defs>
+          <rect width="32" height="32" rx="8" fill="url(#logo-gradient)"/>
           <text x="16" y="22" text-anchor="middle" font-family="system-ui" font-weight="700" font-size="18" fill="white">G</text>
         </svg>
         Gemmra
@@ -112,7 +119,7 @@
     backdrop-filter: blur(24px);
     -webkit-backdrop-filter: blur(24px);
     border-color: rgba(255, 255, 255, 0.2);
-    box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.2), 0 20px 40px rgba(0,0,0,0.9), 0 0 20px rgba(0, 229, 255, 0.15);
+    box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.2), 0 20px 40px rgba(0,0,0,0.9), 0 0 20px rgba(99, 102, 241, 0.15);
   }
 
   .nav-container {

@@ -18,10 +18,10 @@ html {
 
 /* --- Custom Properties --- */
 :root {
-  /* Background layers (Zero-Trust Obsidian) */
-  --bg-primary: #000000;
-  --bg-secondary: #080808;
-  --bg-tertiary: #121212;
+  /* Background layers (Slate-tinted Obsidian) */
+  --bg-primary: #030308;
+  --bg-secondary: #080810;
+  --bg-tertiary: #101018;
   --bg-code: rgba(255, 255, 255, 0.03);
 
   /* Text (Titanium Silver to White) */
@@ -30,11 +30,11 @@ html {
   --text-heading: #ffffff;
   --text-muted: #71717a;
 
-  /* Brand accent (Gemmra Teal — medical technology) */
-  --accent-primary: #00c4cc;
-  --accent-secondary: #0ea5e9;
-  --accent-glow: rgba(0, 196, 204, 0.12);
-  --accent-glow-strong: rgba(0, 196, 204, 0.25);
+  /* Brand accent (TCS Blue & AMD Red Synergy) */
+  --accent-primary: #ED1C24;          /* AMD Crimson Red */
+  --accent-secondary: #0f62fe;        /* TCS Cyber Blue */
+  --accent-glow: rgba(237, 28, 36, 0.08);
+  --accent-glow-strong: rgba(237, 28, 36, 0.18);
 
   /* AMD Branding */
   --accent-amd-red: #ED1C24;
@@ -45,14 +45,14 @@ html {
   --color-warning: #f59e0b;
   --color-error: #ef4444;
 
-  /* Gradients */
-  --gradient-accent: linear-gradient(135deg, #00c4cc 0%, #0ea5e9 100%);
-  --gradient-accent-text: linear-gradient(135deg, #00c4cc 0%, #0ea5e9 100%);
+  /* Gradients (TCS Blue -> Indigo -> AMD Red) */
+  --gradient-accent: linear-gradient(135deg, #0f62fe 0%, #6366f1 50%, #ED1C24 100%);
+  --gradient-accent-text: linear-gradient(135deg, #3b82f6 0%, #6366f1 50%, #ED1C24 100%);
 
   /* Borders (Ultra-thin glass) */
   --border-subtle: rgba(255, 255, 255, 0.06);
   --border-card: rgba(255, 255, 255, 0.04);
-  --border-accent: rgba(0, 196, 204, 0.3);
+  --border-accent: rgba(99, 102, 241, 0.35);
 
   /* Fluid Spacing using clamp */
   --space-xs: clamp(0.25rem, 0.5vw, 0.5rem);

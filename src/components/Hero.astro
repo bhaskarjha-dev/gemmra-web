@@ -35,15 +35,15 @@ import TerminalDemo from './TerminalDemo.astro';
       <!-- Stats Grid (Credibility Booster) -->
       <gemmra-stats class="hero-stats reveal delay-300">
         <div class="stat">
-          <span class="counter" data-target="0.862">0</span>
+          <span class="counter color-tcs" data-target="0.862">0</span>
           <label>Composite Score</label>
         </div>
         <div class="stat">
-          <span class="counter" data-target="0.995">0</span>
+          <span class="counter color-amd" data-target="0.995">0</span>
           <label>Seriousness F1</label>
         </div>
         <div class="stat">
-          <span class="counter" data-target="100">0</span>
+          <span class="counter color-success" data-target="100">0</span>
           <label>Format Compliance</label>
         </div>
       </gemmra-stats>
@@ -267,7 +267,7 @@ import TerminalDemo from './TerminalDemo.astro';
   }
   .btn-secondary:hover {
     border-color: var(--border-accent);
-    background: rgba(0, 229, 255, 0.05);
+    background: rgba(99, 102, 241, 0.05);
     color: var(--accent-primary);
   }
 
@@ -287,8 +287,22 @@ import TerminalDemo from './TerminalDemo.astro';
     font-family: var(--font-mono);
     font-size: var(--text-3xl);
     font-weight: 700;
-    color: var(--accent-primary);
     display: block;
+  }
+
+  .stat .counter.color-amd {
+    color: var(--accent-primary);
+    text-shadow: 0 0 15px rgba(237, 28, 36, 0.2);
+  }
+
+  .stat .counter.color-tcs {
+    color: var(--accent-secondary);
+    text-shadow: 0 0 15px rgba(15, 98, 254, 0.2);
+  }
+
+  .stat .counter.color-success {
+    color: var(--color-success);
+    text-shadow: 0 0 15px rgba(16, 185, 129, 0.2);
   }
 
   .stat label {
@@ -363,8 +377,8 @@ import TerminalDemo from './TerminalDemo.astro';
     transform: translate3d(-50%, -50%, 0);
     width: 120%;
     height: 120%;
-    background: radial-gradient(circle at 20% 30%, rgba(0, 196, 204, 0.08) 0%, transparent 50%),
-                radial-gradient(circle at 80% 70%, rgba(14, 165, 233, 0.08) 0%, transparent 50%);
+    background: radial-gradient(circle at 20% 30%, rgba(237, 28, 36, 0.06) 0%, transparent 50%),
+                radial-gradient(circle at 80% 70%, rgba(15, 98, 254, 0.06) 0%, transparent 50%);
     filter: blur(60px);
     z-index: -2;
   }
@@ -376,7 +390,7 @@ import TerminalDemo from './TerminalDemo.astro';
     transform: translate(-50%, -50%);
     width: 100%;
     aspect-ratio: 1/1;
-    background: conic-gradient(from 180deg at 50% 50%, rgba(0, 196, 204, 0) 0deg, rgba(0, 196, 204, 0.1) 180deg, rgba(0, 196, 204, 0) 360deg);
+    background: conic-gradient(from 180deg at 50% 50%, rgba(237, 28, 36, 0) 0deg, rgba(99, 102, 241, 0.08) 180deg, rgba(237, 28, 36, 0) 360deg);
     filter: blur(80px);
     border-radius: 50%;
     z-index: -1;

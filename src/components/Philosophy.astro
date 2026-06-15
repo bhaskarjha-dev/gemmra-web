@@ -5,7 +5,7 @@
   <div class="container philosophy-inner">
     <div class="philosophy-text">
       <p class="fade-text">
-        In Ayurveda, Nidāna (निदान) is the systematic<br />
+        In Ayurveda, Nidāna (<span class="sanskrit-text">निदान</span>) is the systematic<br />
         investigation of disease causation.
       </p>
       <div class="separator"></div>
@@ -66,6 +66,17 @@
     font-size: var(--text-2xl);
     color: var(--text-heading);
     letter-spacing: -0.02em;
+  }
+
+  .sanskrit-text {
+    font-family: 'Martel', serif;
+    font-weight: 700;
+    background: var(--gradient-accent-text);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    display: inline-block;
+    padding-inline: 2px;
+    filter: drop-shadow(0 2px 8px rgba(99, 102, 241, 0.4));
   }
 
   .glow-text {
