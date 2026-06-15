@@ -9,46 +9,58 @@ import TerminalDemo from './TerminalDemo.astro';
       <!-- Badge -->
       <div class="hero-badge reveal delay-100">
         <span class="badge-dot"></span>
-        <span class="badge-text">v1.1.0 — Enterprise Ready</span>
+        <span class="badge-text">TCS & AMD AI Hackathon 2026</span>
       </div>
       
       <h1 class="hero-title">
-        The Zero-Trust <br/>
-        <span class="text-gradient">Identity Guard</span> for Git.
+        <span class="accent-text">Gemmra</span><br/>
+        Nidāna for Pharmacovigilance.
       </h1>
       
       <p class="hero-subtitle">
-        Stop leaking credentials and committing to the wrong profiles. GitSetu cryptographically sandboxes your work, personal, and client identities with zero background processes.
+        AI-powered drug safety review with auditable reasoning. One fine-tuned model that automates 4 critical pharmacovigilance tasks — from 30 minutes per case to 5 seconds.
       </p>
 
       <!-- CTA & Command -->
       <div class="hero-actions reveal delay-300">
-        <copy-button class="install-block group magnetic">
-          <code class="install-command" id="install-cmd" tabindex="0">curl -sL https://gitsetu.bhaskarjha.dev/install | bash</code>
-          <button class="copy-btn" aria-label="Copy install command" type="button">
-            <svg class="copy-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
-            <svg class="check-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none"><polyline points="20 6 9 17 4 12"/></svg>
-          </button>
-        </copy-button>
-        <a href="/docs/getting-started/quickstart" class="btn btn-primary magnetic">
-          Read Docs 
+        <a href="https://github.com/00bjxx/PharmaReview-AI" target="_blank" rel="noopener" class="btn btn-primary magnetic">
+          View on GitHub
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
         </a>
+        <a href="https://huggingface.co/bhaskarjha/gemmra-31b-lora" target="_blank" rel="noopener" class="btn btn-secondary magnetic">
+          HuggingFace Model
+        </a>
       </div>
+
+      <!-- Stats Grid (Credibility Booster) -->
+      <gemmra-stats class="hero-stats reveal delay-300">
+        <div class="stat">
+          <span class="counter" data-target="0.862">0</span>
+          <label>Composite Score</label>
+        </div>
+        <div class="stat">
+          <span class="counter" data-target="0.995">0</span>
+          <label>Seriousness F1</label>
+        </div>
+        <div class="stat">
+          <span class="counter" data-target="100">0</span>
+          <label>Format Compliance</label>
+        </div>
+      </gemmra-stats>
 
       <!-- Trust Badges -->
       <div class="hero-trust reveal delay-300">
         <div class="trust-item">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-success"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
-          Zero Trust
+          ICH E2A Compliant
         </div>
         <div class="trust-item">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-accent"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
-          FIDO2 Ready
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-accent"><rect x="4" y="4" width="16" height="16" rx="2" ry="2"/><rect x="9" y="9" width="6" height="6"/><line x1="9" y1="1" x2="9" y2="4"/><line x1="15" y1="1" x2="15" y2="4"/><line x1="9" y1="20" x2="9" y2="23"/><line x1="15" y1="20" x2="15" y2="23"/><line x1="20" y1="9" x2="23" y2="9"/><line x1="20" y1="15" x2="23" y2="15"/><line x1="1" y1="9" x2="4" y2="9"/><line x1="1" y1="15" x2="4" y2="15"/></svg>
+          AMD MI300X Optimized
         </div>
         <div class="trust-item">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-secondary"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg>
-          Bash 3.2 Core
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-secondary"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+          Auditable Reasoning
         </div>
       </div>
     </div>
@@ -65,42 +77,49 @@ import TerminalDemo from './TerminalDemo.astro';
 </section>
 
 <script>
-  class CopyButton extends HTMLElement {
-    private timeoutId: number | null = null;
-
+  class GemmraStats extends HTMLElement {
     connectedCallback() {
-      const copyBtn = this.querySelector('.copy-btn') as HTMLButtonElement;
-      const installCmd = this.querySelector('.install-command') as HTMLElement;
-      const copyIcon = this.querySelector('.copy-icon') as HTMLElement;
-      const checkIcon = this.querySelector('.check-icon') as HTMLElement;
+      const counters = this.querySelectorAll('.counter');
+      const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            this.animateCounters(counters);
+            observer.disconnect();
+          }
+        });
+      }, { threshold: 0.1 });
+      observer.observe(this);
+    }
 
-      copyBtn?.addEventListener('click', async () => {
-        if (this.timeoutId) {
-          clearTimeout(this.timeoutId);
-        }
+    animateCounters(counters: NodeListOf<Element>) {
+      counters.forEach(counterEl => {
+        const counter = counterEl as HTMLElement;
+        const target = parseFloat(counter.dataset.target || '0');
+        const isPercent = target >= 1;
+        const duration = 2000;
+        const start = performance.now();
         
-        try {
-          await navigator.clipboard.writeText(installCmd?.textContent?.trim() || '');
-          if (copyIcon) copyIcon.style.display = 'none';
-          if (checkIcon) checkIcon.style.display = 'block';
+        function update(now: number) {
+          const elapsed = now - start;
+          const progress = Math.min(elapsed / duration, 1);
+          const eased = 1 - Math.pow(1 - progress, 3); // Cubic ease-out
+          const current = target * eased;
           
-          this.timeoutId = window.setTimeout(() => {
-            if (copyIcon) copyIcon.style.display = 'block';
-            if (checkIcon) checkIcon.style.display = 'none';
-            this.timeoutId = null;
-          }, 2000);
-        } catch {
-          const range = document.createRange();
-          if (installCmd) range.selectNodeContents(installCmd);
-          window.getSelection()?.removeAllRanges();
-          window.getSelection()?.addRange(range);
+          counter.textContent = isPercent 
+            ? Math.round(current) + '%'
+            : current.toFixed(3);
+            
+          if (progress < 1) {
+            requestAnimationFrame(update);
+          }
         }
+        requestAnimationFrame(update);
       });
     }
   }
 
-  if (!customElements.get('copy-button')) {
-    customElements.define('copy-button', CopyButton);
+  if (typeof window !== 'undefined' && !customElements.get('gemmra-stats')) {
+    customElements.define('gemmra-stats', GemmraStats);
   }
 
   // Magnetic Buttons & 3D Magnetic Terminal
@@ -121,7 +140,7 @@ import TerminalDemo from './TerminalDemo.astro';
     });
 
     const heroVisual = document.querySelector('.hero-visual') as HTMLElement;
-    const terminalNode = document.querySelector('gitsetu-terminal') as HTMLElement;
+    const terminalNode = document.querySelector('gemmra-terminal') as HTMLElement;
     
     if (heroVisual && terminalNode) {
       heroVisual.addEventListener('mousemove', (e) => {
@@ -187,8 +206,8 @@ import TerminalDemo from './TerminalDemo.astro';
     width: 6px;
     height: 6px;
     border-radius: 50%;
-    background: var(--color-success);
-    box-shadow: 0 0 10px var(--color-success);
+    background: var(--accent-amd-red);
+    box-shadow: 0 0 10px var(--accent-amd-red-glow);
     animation: pulse 3s ease-in-out infinite;
   }
 
@@ -217,46 +236,6 @@ import TerminalDemo from './TerminalDemo.astro';
     width: 100%;
   }
 
-  copy-button.install-block {
-    background: var(--bg-code);
-    border: 1px solid var(--border-subtle);
-    border-radius: var(--radius-md);
-    padding: var(--space-sm) var(--space-md);
-    display: flex;
-    align-items: center;
-    min-width: 0;
-    width: 100%;
-    gap: var(--space-md);
-    transition: transform 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94), border-color var(--transition-fast), box-shadow var(--transition-fast);
-  }
-
-  copy-button.install-block:hover {
-    border-color: var(--border-accent);
-    box-shadow: var(--shadow-glow);
-  }
-
-  .install-command {
-    display: block;
-    flex: 1;
-    min-width: 0;
-    color: var(--text-primary);
-    overflow-x: auto;
-    white-space: nowrap;
-    scrollbar-width: none;
-    text-align: left;
-  }
-  .install-command::-webkit-scrollbar { display: none; }
-
-  .copy-btn {
-    background: none;
-    border: none;
-    color: var(--text-muted);
-    cursor: pointer;
-    padding: 4px;
-    transition: color var(--transition-fast);
-  }
-  .copy-btn:hover { color: var(--text-primary); }
-
   .btn-primary {
     display: inline-flex;
     align-items: center;
@@ -271,6 +250,54 @@ import TerminalDemo from './TerminalDemo.astro';
   }
   .btn-primary:hover {
     box-shadow: 0 0 30px var(--accent-primary);
+  }
+
+  .btn-secondary {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-sm);
+    background: rgba(255, 255, 255, 0.03);
+    color: var(--text-primary);
+    border: 1px solid var(--border-card);
+    padding: 12px 24px;
+    border-radius: var(--radius-md);
+    font-weight: 600;
+    text-decoration: none;
+    transition: transform 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94), border-color var(--transition-fast), background var(--transition-fast);
+  }
+  .btn-secondary:hover {
+    border-color: var(--border-accent);
+    background: rgba(0, 229, 255, 0.05);
+    color: var(--accent-primary);
+  }
+
+  /* Stats Grid styling */
+  .hero-stats {
+    display: flex;
+    gap: var(--space-3xl);
+    margin-bottom: var(--space-3xl);
+    width: 100%;
+  }
+
+  .stat {
+    text-align: left;
+  }
+
+  .stat .counter {
+    font-family: var(--font-mono);
+    font-size: var(--text-3xl);
+    font-weight: 700;
+    color: var(--accent-primary);
+    display: block;
+  }
+
+  .stat label {
+    font-size: var(--text-xs);
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-top: var(--space-xs);
+    display: block;
   }
 
   .hero-trust {
@@ -322,7 +349,7 @@ import TerminalDemo from './TerminalDemo.astro';
   }
 
   /* Target the web component for 3D */
-  gitsetu-terminal {
+  gemmra-terminal {
     display: block;
     transition: transform 0.1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     will-change: transform;
