@@ -1,5 +1,5 @@
 /* ============================================================
-   GitSetu Landing Page — Global Design System (Deep Space / Fluid)
+   Gemmra Landing Page — Global Design System (Deep Space / Fluid)
    ============================================================ */
 
 /* --- CSS Reset --- */
@@ -30,7 +30,7 @@ html {
   --text-heading: #ffffff;
   --text-muted: #71717a;
 
-  /* Brand accent (GitSetu Teal/Blue) */
+  /* Brand accent (Gemmra Teal — medical technology) */
   --accent-primary: #00c4cc;
   --accent-secondary: #0ea5e9;
   --accent-glow: rgba(0, 196, 204, 0.12);
