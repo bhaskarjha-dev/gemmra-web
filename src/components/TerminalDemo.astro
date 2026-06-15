@@ -10,7 +10,10 @@ import '@xterm/xterm/css/xterm.css';
         <span class="terminal-dot yellow"></span>
         <span class="terminal-dot green"></span>
       </div>
-      <span class="terminal-title">gemmra — inference</span>
+      <span class="terminal-title">
+        <span class="live-dot"></span>
+        gemmra — inference (AMD MI300X)
+      </span>
       
       <div class="terminal-modes">
         <button class="mode-btn active" id="mode-demo">Auto-Demo</button>
@@ -422,6 +425,24 @@ import '@xterm/xterm/css/xterm.css';
     font-size: var(--text-xs);
     font-family: var(--font-mono);
     font-weight: 500;
+    display: flex;
+    align-items: center;
+  }
+
+  .live-dot {
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--color-success);
+    margin-right: 8px;
+    box-shadow: 0 0 8px var(--color-success);
+    animation: livePulse 2s ease-in-out infinite;
+  }
+
+  @keyframes livePulse {
+    0%, 100% { opacity: 0.35; transform: scale(0.9); }
+    50% { opacity: 1; transform: scale(1.15); box-shadow: 0 0 12px var(--color-success); }
   }
 
   .terminal-modes {

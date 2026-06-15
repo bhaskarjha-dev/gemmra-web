@@ -13,8 +13,8 @@ import TerminalDemo from './TerminalDemo.astro';
       </div>
       
       <h1 class="hero-title">
-        <span class="accent-text">Gemmra</span><br/>
-        Nidāna for Pharmacovigilance.
+        <span class="brand-name accent-text">Gemmra</span>
+        <span class="hero-motto">Nidāna for Pharmacovigilance</span>
       </h1>
       
       <p class="hero-subtitle">
@@ -25,7 +25,7 @@ import TerminalDemo from './TerminalDemo.astro';
       <div class="hero-actions reveal delay-300">
         <a href="https://github.com/00bjxx/PharmaReview-AI" target="_blank" rel="noopener" class="btn btn-primary magnetic">
           View on GitHub
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+          <svg class="cta-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
         </a>
         <a href="https://huggingface.co/bhaskarjha/gemmra-31b-lora" target="_blank" rel="noopener" class="btn btn-secondary magnetic">
           HuggingFace Model
@@ -73,6 +73,14 @@ import TerminalDemo from './TerminalDemo.astro';
       <TerminalDemo />
     </div>
 
+  </div>
+  
+  <!-- Scroll Down Indicator -->
+  <div class="scroll-indicator reveal delay-400">
+    <div class="mouse-scroll">
+      <span class="mouse-wheel"></span>
+    </div>
+    <span class="scroll-text">Scroll to explore</span>
   </div>
 </section>
 
@@ -212,10 +220,27 @@ import TerminalDemo from './TerminalDemo.astro';
   }
 
   .hero-title {
-    /* Using clamp for true fluid typography */
-    font-size: clamp(2rem, 8vw, 4.5rem);
+    display: flex;
+    flex-direction: column;
     margin-bottom: var(--space-lg);
-    line-height: 1.05;
+    line-height: 1.1;
+  }
+
+  .brand-name {
+    font-size: clamp(3.2rem, 9vw, 5.2rem);
+    font-weight: 800;
+    letter-spacing: -0.04em;
+  }
+
+  .hero-motto {
+    font-size: clamp(1.4rem, 4vw, 2.1rem);
+    font-weight: 600;
+    color: var(--text-primary);
+    letter-spacing: -0.02em;
+    margin-top: 6px;
+    background: linear-gradient(90deg, var(--text-heading), var(--text-secondary));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
   }
 
   .hero-subtitle {
@@ -446,5 +471,62 @@ import TerminalDemo from './TerminalDemo.astro';
       justify-content: center;
       gap: var(--space-md);
     }
+  }
+
+  /* CTA Button Arrow Micro-animation */
+  .btn-primary:hover .cta-arrow {
+    transform: translateX(4px);
+  }
+  .cta-arrow {
+    transition: transform var(--transition-fast);
+  }
+
+  /* Scroll Indicator Styling */
+  .scroll-indicator {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    margin-top: var(--space-3xl);
+    margin-bottom: calc(-1 * var(--space-2xl));
+    opacity: 0.5;
+    transition: opacity var(--transition-base);
+    cursor: pointer;
+    z-index: 20;
+    position: relative;
+    width: 100%;
+  }
+  .scroll-indicator:hover {
+    opacity: 0.95;
+  }
+  .mouse-scroll {
+    width: 20px;
+    height: 32px;
+    border: 2px solid var(--text-muted);
+    border-radius: 12px;
+    position: relative;
+  }
+  .mouse-wheel {
+    width: 4px;
+    height: 6px;
+    background: var(--accent-primary);
+    border-radius: 50%;
+    position: absolute;
+    top: 6px;
+    left: 50%;
+    transform: translateX(-50%);
+    animation: scrollWheel 2s ease-in-out infinite;
+  }
+  .scroll-text {
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    font-family: var(--font-mono);
+    color: var(--text-muted);
+  }
+  @keyframes scrollWheel {
+    0% { top: 6px; opacity: 1; }
+    50% { top: 16px; opacity: 0; }
+    100% { top: 6px; opacity: 1; }
   }
 </style>
