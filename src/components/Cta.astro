@@ -1,7 +1,7 @@
 ---
 ---
 
-<gitsetu-cta>
+<gemmra-cta>
 <section class="cta-section section reveal">
   <div class="event-horizon-container">
     <div class="event-horizon"></div>
@@ -10,24 +10,24 @@
   
   <div class="cta-container container">
     <div class="cta-content">
-      <h2 class="cta-title">Deploy with <span class="accent-text glow-title">Confidence.</span></h2>
-      <p class="cta-subtitle">The enterprise identity fabric that physically prevents leakage.</p>
+      <h2 class="cta-title">Explore <span class="accent-text glow-title">Gemmra.</span></h2>
+      <p class="cta-subtitle">Fine-tuned Gemma 4 31B for pharmacovigilance. Open source. Built on AMD MI300X.</p>
       
       <div class="cta-actions">
-        <a href="/docs/getting-started/quickstart" class="btn btn-primary">
-          Get Started Now
+        <a href="https://github.com/00bjxx/PharmaReview-AI" target="_blank" rel="noopener" class="btn btn-primary">
+          View on GitHub →
         </a>
-        <a href="https://github.com/bhaskarjha-com/gitsetu" target="_blank" rel="noopener" class="btn btn-outline">
-          View on GitHub
+        <a href="https://huggingface.co/bhaskarjha/gemmra-31b-lora" target="_blank" rel="noopener" class="btn btn-outline">
+          Model on HuggingFace →
         </a>
       </div>
     </div>
   </div>
 </section>
-</gitsetu-cta>
+</gemmra-cta>
 
 <script>
-  class GitsetuCta extends HTMLElement {
+  class GemmraCta extends HTMLElement {
     connectedCallback() {
       const ctaSection = this.querySelector('.cta-section') as HTMLElement;
       if (ctaSection) {
@@ -40,8 +40,8 @@
     }
   }
 
-  if (typeof window !== 'undefined' && !customElements.get('gitsetu-cta')) {
-    customElements.define('gitsetu-cta', GitsetuCta);
+  if (typeof window !== 'undefined' && !customElements.get('gemmra-cta')) {
+    customElements.define('gemmra-cta', GemmraCta);
   }
 </script>
 
