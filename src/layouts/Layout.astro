@@ -1,7 +1,6 @@
 ---
 import { ClientRouter } from 'astro:transitions';
 import '../styles/global.css';
-import CommandPalette from '../components/CommandPalette.astro';
 
 interface Props {
   title?: string;
@@ -69,7 +68,6 @@ const {
     <global-manager>
       <!-- Persistent Noise Overlay -->
       <div class="noise-overlay"></div>
-      <CommandPalette />
       <slot />
     </global-manager>
     
