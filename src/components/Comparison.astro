@@ -1,72 +1,44 @@
 ---
-const comparisonData = [
-  { feature: 'Zero runtime dependencies', gitsetu: '✅', gitego: '❌', karn: '❌', gh: '❌', gcm: '❌' },
-  { feature: 'Pre-commit identity guard', gitsetu: '✅', gitego: '⚡', karn: '❌', gh: '❌', gcm: '❌' },
-  { feature: 'Native includeIf sandboxing', gitsetu: '✅', gitego: '✅', karn: '❌', gh: '❌', gcm: '❌' },
-  { feature: 'Automated SSH key generation', gitsetu: '✅', gitego: '❌', karn: '❌', gh: '❌', gcm: '❌' },
-  { feature: 'Zero-Trust SSH Isolation', gitsetu: '✅', gitego: '❌', karn: '❌', gh: '❌', gcm: '❌' },
-  { feature: 'GPG & SSH commit signing', gitsetu: '✅', gitego: '❌', karn: '⚡', gh: '❌', gcm: '❌' },
-  { feature: 'FIDO2 / YubiKey Support', gitsetu: '✅', gitego: '❌', karn: '❌', gh: '❌', gcm: '❌' },
-  { feature: 'Runtime', gitsetu: 'Bash 3.2', gitego: 'Go', karn: 'Go', gh: 'Go', gcm: '.NET' }
+const resultsData = [
+  { task: 'T1 Seriousness Classification', metric: 'F1 Score', score: '0.995', samples: '890', status: '✅ Near-perfect', highlightClass: 'success' },
+  { task: 'T2 MedDRA Coding', metric: 'Weighted Accuracy', score: '0.667', samples: '890', status: '🔶 Room to grow', highlightClass: 'warning' },
+  { task: 'T3 Labelling Assessment', metric: 'F1 Score', score: '0.801', samples: '890', status: '✅ Strong', highlightClass: 'strong' },
+  { task: 'T4 WHO-UMC Causality', metric: 'Weighted Accuracy', score: '0.986', samples: '890', status: '✅ Near-perfect', highlightClass: 'success' },
+  { task: 'Format Compliance', metric: 'All tasks', score: '100%', samples: '3,560', status: '✅ Perfect', highlightClass: 'perfect' },
+  { task: 'Composite Score', metric: 'Average', score: '0.862', samples: '3,560', status: '✅ Shipped', highlightClass: 'composite' }
 ];
 ---
 
-<section class="comparison section" id="comparison">
+<section class="comparison section" id="results">
   <div class="container">
-    <h2 class="section-title">How GitSetu compares.</h2>
-    <p class="section-subtitle">Verified May 2026 against each project's README.</p>
+    <h2 class="section-title">How <span class="accent-text">Gemmra</span> performs.</h2>
+    <p class="section-subtitle">Evaluated on 3,560 decontaminated samples across 4 pharmacovigilance tasks. Full bf16 inference on AMD MI300X.</p>
 
     <div class="table-container">
       <table class="compare-table">
         <thead>
           <tr>
-            <th class="feature-col">Feature</th>
-            <th class="gitsetu-col">GitSetu</th>
-            <th>gitego</th>
-            <th>karn</th>
-            <th>gh CLI</th>
-            <th>GCM</th>
+            <th class="task-col">Task</th>
+            <th>Metric</th>
+            <th>Score</th>
+            <th>Samples</th>
+            <th>Status</th>
           </tr>
         </thead>
         <tbody>
-          {comparisonData.map((row) => (
-            <tr>
-              <td class="feature-cell">{row.feature}</td>
-              <td class="gitsetu-cell">
-                <span class={row.gitsetu === '✅' ? 'success' : (row.gitsetu === '⚡' ? 'warning' : 'neutral')}>
-                  {row.gitsetu}
-                </span>
+          {resultsData.map((row) => (
+            <tr class={row.highlightClass === 'composite' ? 'composite-row' : ''}>
+              <td class="task-cell">{row.task}</td>
+              <td>{row.metric}</td>
+              <td class={`score-cell ${row.highlightClass}`}>
+                <span>{row.score}</span>
               </td>
-              <td class="competitor-cell">
-                <span class={row.gitego === '✅' ? 'success' : (row.gitego === '⚡' ? 'warning' : 'neutral')}>
-                  {row.gitego}
-                </span>
-              </td>
-              <td class="competitor-cell">
-                <span class={row.karn === '✅' ? 'success' : (row.karn === '⚡' ? 'warning' : 'neutral')}>
-                  {row.karn}
-                </span>
-              </td>
-              <td class="competitor-cell">
-                <span class={row.gh === '✅' ? 'success' : (row.gh === '⚡' ? 'warning' : 'neutral')}>
-                  {row.gh}
-                </span>
-              </td>
-              <td class="competitor-cell">
-                <span class={row.gcm === '✅' ? 'success' : (row.gcm === '⚡' ? 'warning' : 'neutral')}>
-                  {row.gcm}
-                </span>
-              </td>
+              <td class="samples-cell">{row.samples}</td>
+              <td class="status-cell">{row.status}</td>
             </tr>
           ))}
         </tbody>
       </table>
-    </div>
-
-    <div class="legend">
-      <span><span class="success">✅</span> Full support</span>
-      <span><span class="warning">⚡</span> Partial (e.g. GPG but no SSH)</span>
-      <span><span class="neutral">❌</span> None</span>
     </div>
   </div>
 </section>
@@ -82,6 +54,7 @@ const comparisonData = [
     border-radius: var(--radius-lg);
     border: 1px solid var(--border-card);
     background: var(--bg-primary);
+    box-shadow: var(--shadow-card);
   }
 
   .compare-table {
@@ -97,12 +70,15 @@ const comparisonData = [
     color: var(--text-heading);
     border-bottom: 1px solid var(--border-card);
     background: var(--bg-tertiary);
+    font-family: var(--font-display);
+    font-size: var(--text-sm);
   }
 
   .compare-table td {
     padding: var(--space-md);
     border-bottom: 1px solid var(--border-subtle);
     color: var(--text-secondary);
+    font-size: var(--text-sm);
   }
 
   .compare-table tr:last-child td {
@@ -110,10 +86,10 @@ const comparisonData = [
   }
 
   .compare-table tbody tr:hover {
-    background: rgba(255, 255, 255, 0.02);
+    background: rgba(255, 255, 255, 0.01);
   }
 
-  .feature-col, .feature-cell {
+  .task-col, .task-cell {
     text-align: left;
     position: sticky;
     left: 0;
@@ -121,66 +97,63 @@ const comparisonData = [
     z-index: 10;
   }
 
-  .compare-table th.feature-col {
+  .compare-table th.task-col {
     background: var(--bg-tertiary);
   }
 
-  .compare-table tbody tr:hover .feature-cell {
+  .compare-table tbody tr:hover .task-cell {
     background: var(--bg-tertiary);
   }
 
-  .feature-cell {
+  .task-cell {
     font-weight: 500;
     color: var(--text-primary);
   }
 
-  .gitsetu-col, .gitsetu-cell {
-    background: rgba(0, 196, 204, 0.05);
+  .samples-cell {
+    font-family: var(--font-mono);
+  }
+
+  .score-cell {
+    font-family: var(--font-mono);
     font-weight: 600;
   }
 
-  .gitsetu-col {
-    color: var(--accent-primary) !important;
+  .score-cell.success {
+    color: var(--color-success);
+    text-shadow: 0 0 10px rgba(16, 185, 129, 0.2);
   }
 
-  .compare-table tbody tr:hover .gitsetu-cell {
-    background: rgba(0, 196, 204, 0.1);
+  .score-cell.warning {
+    color: var(--color-warning);
+    text-shadow: 0 0 10px rgba(245, 158, 11, 0.2);
   }
 
-  .competitor-cell {
-    opacity: 0.8;
+  .score-cell.strong {
+    color: var(--text-primary);
   }
 
-  /* Specific styling for the Runtime row to not look like emojis */
-  .compare-table tr:last-child td span {
-    font-size: var(--text-sm);
-    opacity: 1;
-  }
-
-  .success {
+  .score-cell.perfect {
     color: var(--color-success);
   }
 
-  .warning {
-    color: var(--color-warning);
+  .score-cell.composite {
+    color: var(--accent-primary);
+    font-size: var(--text-lg);
+    text-shadow: 0 0 12px var(--accent-glow-strong);
   }
 
-  .neutral {
-    opacity: 0.3;
+  .composite-row {
+    background: rgba(0, 196, 204, 0.02) !important;
   }
 
-  .legend {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: var(--space-xl);
-    margin-top: var(--space-lg);
-    font-size: var(--text-sm);
-    color: var(--text-secondary);
+  .composite-row td {
+    color: var(--text-heading) !important;
+    font-weight: 700;
   }
 
-  .legend span span {
-    margin-right: 4px;
+  .composite-row .task-cell, .composite-row .score-cell {
+    font-weight: 700;
   }
 
   @media (max-width: 768px) {
