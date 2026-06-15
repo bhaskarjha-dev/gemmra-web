@@ -1,18 +1,18 @@
 ---
 const resultsData = [
-  { task: 'T1 Seriousness Classification', metric: 'F1 Score', score: '0.995', samples: '890', status: '✅ Near-perfect', highlightClass: 'success' },
-  { task: 'T2 MedDRA Coding', metric: 'Weighted Accuracy', score: '0.667', samples: '890', status: '🔶 Room to grow', highlightClass: 'warning' },
-  { task: 'T3 Labelling Assessment', metric: 'F1 Score', score: '0.801', samples: '890', status: '✅ Strong', highlightClass: 'strong' },
-  { task: 'T4 WHO-UMC Causality', metric: 'Weighted Accuracy', score: '0.986', samples: '890', status: '✅ Near-perfect', highlightClass: 'success' },
-  { task: 'Format Compliance', metric: 'All tasks', score: '100%', samples: '3,560', status: '✅ Perfect', highlightClass: 'perfect' },
-  { task: 'Composite Score', metric: 'Average', score: '0.862', samples: '3,560', status: '✅ Shipped', highlightClass: 'composite' }
+  { task: 'T1 Seriousness Classification', metric: 'F1 Score', score: '0.995', samples: '1,027', status: '✅ Near-perfect', highlightClass: 'success' },
+  { task: 'T2 MedDRA Coding', metric: 'Weighted Accuracy', score: '0.667', samples: '759', status: '🔶 Room to grow', highlightClass: 'warning' },
+  { task: 'T3 Labelling Assessment', metric: 'F1 Score', score: '0.801', samples: '980', status: '✅ Strong', highlightClass: 'strong' },
+  { task: 'T4 WHO-UMC Causality', metric: 'Weighted Accuracy', score: '0.986', samples: '794', status: '✅ Near-perfect', highlightClass: 'success' },
+  { task: 'Format Compliance', metric: 'All tasks', score: '100%', samples: '3,645', status: '✅ Perfect', highlightClass: 'perfect' },
+  { task: 'Composite Score', metric: 'Average', score: '0.862', samples: '3,645', status: '✅ Shipped', highlightClass: 'composite' }
 ];
 ---
 
 <section class="comparison section" id="results">
   <div class="container">
     <h2 class="section-title">How <span class="accent-text">Gemmra</span> performs.</h2>
-    <p class="section-subtitle">Evaluated on 3,560 decontaminated samples across 4 pharmacovigilance tasks. Full bf16 inference on AMD MI300X.</p>
+    <p class="section-subtitle">Evaluated on 3,645 decontaminated samples across 4 pharmacovigilance tasks. Full bf16 inference on AMD MI300X.</p>
 
     <div class="table-container">
       <table class="compare-table">
