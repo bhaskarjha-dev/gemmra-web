@@ -1,0 +1,343 @@
+---
+const approaches = [
+  {
+    name: 'SFT',
+    status: 'Shipped',
+    statusClass: 'status-shipped',
+    composite: '0.862',
+    format: '100%',
+    reasoning: '45 words',
+    reasoningNote: 'Collapsed',
+    reasoningClass: 'reasoning-warn',
+    description: 'Supervised fine-tuning with completion-only loss. Data quality drove all gains — 4 iterative data fixes over 7 days.',
+    highlight: true,
+  },
+  {
+    name: 'WiSE-FT',
+    status: 'Alternative',
+    statusClass: 'status-alt',
+    composite: '0.825',
+    format: '99%',
+    reasoning: '400+ words',
+    reasoningNote: 'Deep reasoning',
+    reasoningClass: 'reasoning-good',
+    description: 'Weight interpolation (α=0.9) blends SFT format with base model reasoning. Recovers deep ICH E2A criterion-by-criterion analysis.',
+    highlight: false,
+  },
+  {
+    name: 'GRPO',
+    status: 'Validated Ceiling',
+    statusClass: 'status-validated',
+    composite: '0.828',
+    format: '100%',
+    reasoning: '83–279 tokens',
+    reasoningNote: 'Plain text',
+    reasoningClass: 'reasoning-neutral',
+    description: 'RL on WiSE-FT achieved +0.003 composite, then reward variance collapsed at 60%. Proves SFT captured all learnable signal.',
+    highlight: false,
+  },
+];
+---
+
+<section class="training-approaches section" id="approaches">
+  <div class="container">
+    <h2 class="section-title">Three approaches. <span class="accent-text">One conclusion.</span></h2>
+    <p class="section-subtitle">We explored SFT, weight interpolation, and reinforcement learning. Each proved the same thing: data quality is the bottleneck, not the algorithm.</p>
+
+    <div class="approaches-grid">
+      {approaches.map((a) => (
+        <div class={`approach-card ${a.highlight ? 'approach-primary' : ''}`}>
+          <div class="approach-header">
+            <h3 class="approach-name">{a.name}</h3>
+            <span class={`approach-status ${a.statusClass}`}>{a.status}</span>
+          </div>
+
+          <div class="approach-composite">
+            <span class="composite-number">{a.composite}</span>
+            <span class="composite-suffix">composite</span>
+          </div>
+
+          <div class="approach-metrics">
+            <div class="metric-row">
+              <span class="metric-label-sm">Format</span>
+              <span class="metric-val">{a.format}</span>
+            </div>
+            <div class="metric-row">
+              <span class="metric-label-sm">Reasoning</span>
+              <span class={`metric-val ${a.reasoningClass}`}>{a.reasoning}</span>
+            </div>
+            <div class="metric-row">
+              <span class="metric-label-sm"></span>
+              <span class={`metric-note ${a.reasoningClass}`}>{a.reasoningNote}</span>
+            </div>
+          </div>
+
+          <p class="approach-desc">{a.description}</p>
+
+          {a.highlight && (
+            <div class="primary-badge">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              Primary Model
+            </div>
+          )}
+        </div>
+      ))}
+    </div>
+
+    <!-- Key Takeaway -->
+    <div class="takeaway-bar reveal delay-300">
+      <div class="takeaway-stat">
+        <span class="takeaway-number">3.9×</span>
+        <span class="takeaway-label">from one data fix</span>
+      </div>
+      <div class="takeaway-divider"></div>
+      <div class="takeaway-stat">
+        <span class="takeaway-number">+0.003</span>
+        <span class="takeaway-label">from RL fine-tuning</span>
+      </div>
+      <div class="takeaway-divider"></div>
+      <div class="takeaway-stat">
+        <span class="takeaway-number accent-text">∴</span>
+        <span class="takeaway-label">Fix the data, not the model</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .training-approaches {
+    background: var(--bg-secondary);
+  }
+
+  .approaches-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-xl);
+    margin-bottom: var(--space-3xl);
+  }
+
+  .approach-card {
+    background: var(--bg-primary);
+    border: 1px solid var(--border-card);
+    border-radius: var(--radius-xl);
+    padding: var(--space-xl);
+    position: relative;
+    transition: transform var(--transition-base), box-shadow var(--transition-base), border-color var(--transition-base);
+  }
+
+  .approach-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+  }
+
+  .approach-primary {
+    border-color: var(--border-accent);
+    background: rgba(0, 196, 204, 0.02);
+  }
+
+  .approach-primary::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    padding: 1px;
+    background: linear-gradient(180deg, rgba(0, 229, 255, 0.4) 0%, transparent 50%);
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
+  }
+
+  .approach-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--space-lg);
+  }
+
+  .approach-name {
+    font-size: var(--text-xl);
+    font-family: var(--font-display);
+    font-weight: 700;
+    color: var(--text-heading);
+  }
+
+  .approach-status {
+    font-size: var(--text-xs);
+    font-family: var(--font-mono);
+    font-weight: 600;
+    padding: 3px 10px;
+    border-radius: var(--radius-full);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .status-shipped {
+    color: var(--color-success);
+    background: rgba(16, 185, 129, 0.08);
+    border: 1px solid rgba(16, 185, 129, 0.2);
+  }
+
+  .status-alt {
+    color: var(--accent-secondary);
+    background: rgba(14, 165, 233, 0.08);
+    border: 1px solid rgba(14, 165, 233, 0.2);
+  }
+
+  .status-validated {
+    color: var(--text-muted);
+    background: var(--bg-tertiary);
+    border: 1px solid var(--border-subtle);
+  }
+
+  .approach-composite {
+    display: flex;
+    align-items: baseline;
+    gap: var(--space-sm);
+    margin-bottom: var(--space-lg);
+  }
+
+  .composite-number {
+    font-family: var(--font-mono);
+    font-size: var(--text-4xl);
+    font-weight: 700;
+    color: var(--text-heading);
+    letter-spacing: -0.03em;
+    line-height: 1;
+  }
+
+  .approach-primary .composite-number {
+    background: var(--gradient-accent-text);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .composite-suffix {
+    font-size: var(--text-sm);
+    color: var(--text-muted);
+  }
+
+  .approach-metrics {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin-bottom: var(--space-lg);
+    padding: var(--space-md);
+    background: var(--bg-tertiary);
+    border-radius: var(--radius-md);
+    border: 1px solid var(--border-subtle);
+  }
+
+  .metric-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: var(--text-xs);
+  }
+
+  .metric-label-sm {
+    color: var(--text-muted);
+  }
+
+  .metric-val {
+    font-family: var(--font-mono);
+    font-weight: 600;
+    color: var(--text-primary);
+  }
+
+  .metric-note {
+    font-size: 11px;
+    font-family: var(--font-mono);
+  }
+
+  .reasoning-good {
+    color: var(--color-success);
+  }
+
+  .reasoning-warn {
+    color: var(--color-warning);
+  }
+
+  .reasoning-neutral {
+    color: var(--text-secondary);
+  }
+
+  .approach-desc {
+    font-size: var(--text-sm);
+    color: var(--text-secondary);
+    line-height: 1.6;
+    min-height: 65px;
+  }
+
+  .primary-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-xs);
+    margin-top: var(--space-lg);
+    font-size: var(--text-xs);
+    font-weight: 600;
+    color: var(--color-success);
+    padding: 4px 12px;
+    background: rgba(16, 185, 129, 0.06);
+    border: 1px solid rgba(16, 185, 129, 0.2);
+    border-radius: var(--radius-full);
+  }
+
+  /* Takeaway Bar */
+  .takeaway-bar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: var(--space-3xl);
+    padding: var(--space-xl) var(--space-2xl);
+    background: var(--bg-primary);
+    border: 1px solid var(--border-card);
+    border-radius: var(--radius-xl);
+  }
+
+  .takeaway-stat {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .takeaway-number {
+    font-family: var(--font-mono);
+    font-size: var(--text-3xl);
+    font-weight: 700;
+    color: var(--text-heading);
+    letter-spacing: -0.02em;
+    line-height: 1.2;
+  }
+
+  .takeaway-label {
+    font-size: var(--text-xs);
+    color: var(--text-muted);
+    margin-top: 4px;
+  }
+
+  .takeaway-divider {
+    width: 1px;
+    height: 50px;
+    background: linear-gradient(to bottom, transparent, var(--border-card), transparent);
+  }
+
+  @media (max-width: 900px) {
+    .approaches-grid {
+      grid-template-columns: 1fr;
+    }
+    .approach-desc {
+      min-height: auto;
+    }
+    .takeaway-bar {
+      flex-direction: column;
+      gap: var(--space-xl);
+    }
+    .takeaway-divider {
+      width: 60px;
+      height: 1px;
+    }
+  }
+</style>

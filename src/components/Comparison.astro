@@ -1,18 +1,16 @@
 ---
 const resultsData = [
-  { task: 'T1 Seriousness Classification', metric: 'F1 Score', score: '0.995', samples: '1,027', status: '✅ Near-perfect', highlightClass: 'success' },
-  { task: 'T2 MedDRA Coding', metric: 'Weighted Accuracy', score: '0.667', samples: '759', status: '🔶 Room to grow', highlightClass: 'warning' },
-  { task: 'T3 Labelling Assessment', metric: 'F1 Score', score: '0.801', samples: '980', status: '✅ Strong', highlightClass: 'strong' },
-  { task: 'T4 WHO-UMC Causality', metric: 'Weighted Accuracy', score: '0.986', samples: '794', status: '✅ Near-perfect', highlightClass: 'success' },
-  { task: 'Format Compliance', metric: 'All tasks', score: '100%', samples: '3,645', status: '✅ Perfect', highlightClass: 'perfect' },
-  { task: 'Composite Score', metric: 'Average', score: '0.862', samples: '3,645', status: '✅ Shipped', highlightClass: 'composite' }
+  { task: 'T1 Seriousness', metric: 'F1 Score', base: '0.840', gemmra: '0.995', improvement: '+18.5%', samples: '1,027', status: '✅ Near-perfect', highlightClass: 'success' },
+  { task: 'T2 MedDRA Coding', metric: 'Weighted', base: '0.080', gemmra: '0.667', improvement: '+733%', samples: '759', status: '🔶 Room to grow', highlightClass: 'warning' },
+  { task: 'T3 Labelling', metric: 'F1 Score', base: '0.720', gemmra: '0.801', improvement: '+11.3%', samples: '980', status: '✅ Strong', highlightClass: 'strong' },
+  { task: 'T4 Causality', metric: 'Weighted', base: '0.420', gemmra: '0.986', improvement: '+135%', samples: '794', status: '✅ Near-perfect', highlightClass: 'success' },
 ];
 ---
 
 <section class="comparison section" id="results">
   <div class="container">
-    <h2 class="section-title">How <span class="accent-text">Gemmra</span> performs.</h2>
-    <p class="section-subtitle">Evaluated on 3,645 decontaminated samples across 4 pharmacovigilance tasks. Full bf16 inference on AMD MI300X.</p>
+    <h2 class="section-title">Base model vs. <span class="accent-text">Gemmra.</span></h2>
+    <p class="section-subtitle">Same model, same hardware. The difference is data-first fine-tuning and iterative debugging.<br/>Evaluated on 3,645 decontaminated samples across 4 pharmacovigilance tasks.</p>
 
     <div class="table-container">
       <table class="compare-table">
@@ -20,9 +18,10 @@ const resultsData = [
           <tr>
             <th class="task-col">Task</th>
             <th>Metric</th>
-            <th>Score</th>
+            <th class="base-col">Base Gemma 4</th>
+            <th class="gemmra-col">Gemmra (SFT)</th>
+            <th class="improvement-col">Improvement</th>
             <th>Samples</th>
-            <th>Status</th>
           </tr>
         </thead>
         <tbody>
@@ -30,15 +29,46 @@ const resultsData = [
             <tr class={`table-row ${row.highlightClass}-row`}>
               <td class="task-cell">{row.task}</td>
               <td>{row.metric}</td>
+              <td class="base-score">{row.base}</td>
               <td class={`score-cell ${row.highlightClass}`}>
-                <span>{row.score}</span>
+                <span>{row.gemmra}</span>
               </td>
+              <td class="improvement-cell">{row.improvement}</td>
               <td class="samples-cell">{row.samples}</td>
-              <td class="status-cell">{row.status}</td>
             </tr>
           ))}
+          <!-- Composite Row -->
+          <tr class="composite-row">
+            <td class="task-cell">Composite Score</td>
+            <td>Average</td>
+            <td class="base-score">0.515</td>
+            <td class="score-cell composite">
+              <span>0.862</span>
+            </td>
+            <td class="improvement-cell composite-improvement">+67.4%</td>
+            <td class="samples-cell">3,645</td>
+          </tr>
+          <!-- Format Row -->
+          <tr class="table-row perfect-row">
+            <td class="task-cell">Format Compliance</td>
+            <td>All tasks</td>
+            <td class="base-score base-fail">0%</td>
+            <td class="score-cell perfect">
+              <span>100%</span>
+            </td>
+            <td class="improvement-cell">∞</td>
+            <td class="samples-cell">3,645</td>
+          </tr>
         </tbody>
       </table>
+    </div>
+
+    <!-- Insight callout -->
+    <div class="insight-callout reveal delay-200">
+      <div class="insight-icon">💡</div>
+      <div class="insight-text">
+        <strong>Key finding:</strong> The biggest gain — T2 MedDRA at <span class="accent-text">+733%</span> — came from fixing a single line in the data pipeline, not from model architecture changes. Data quality beats model tuning.
+      </div>
     </div>
   </div>
 </section>
@@ -122,7 +152,7 @@ const resultsData = [
     border-left-color: var(--color-warning);
   }
 
-  .composite-row-custom .task-cell, .composite-row .task-cell {
+  .composite-row .task-cell {
     border-left-color: var(--accent-secondary);
   }
 
@@ -164,6 +194,44 @@ const resultsData = [
     text-shadow: 0 0 12px var(--accent-glow-strong);
   }
 
+  /* Base model scores — dimmed to contrast with Gemmra */
+  .base-score {
+    font-family: var(--font-mono);
+    color: var(--text-muted);
+    opacity: 0.6;
+  }
+
+  .base-fail {
+    color: var(--color-error);
+    opacity: 0.8;
+  }
+
+  .base-col {
+    color: var(--text-muted);
+  }
+
+  .gemmra-col {
+    color: var(--accent-primary);
+  }
+
+  .improvement-col {
+    color: var(--color-success);
+  }
+
+  /* Improvement column — green with glow */
+  .improvement-cell {
+    font-family: var(--font-mono);
+    font-weight: 600;
+    color: var(--color-success);
+    text-shadow: 0 0 8px rgba(16, 185, 129, 0.3);
+  }
+
+  .composite-improvement {
+    color: var(--accent-primary);
+    font-size: var(--text-base);
+    text-shadow: 0 0 12px var(--accent-glow-strong);
+  }
+
   .composite-row {
     background: rgba(15, 98, 254, 0.03) !important;
     border-top: 1px solid var(--border-accent);
@@ -177,6 +245,36 @@ const resultsData = [
 
   .composite-row .task-cell, .composite-row .score-cell {
     font-weight: 700;
+  }
+
+  .composite-row .base-score {
+    opacity: 0.8;
+    color: var(--text-secondary);
+  }
+
+  /* Insight Callout */
+  .insight-callout {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-md);
+    margin-top: var(--space-2xl);
+    padding: var(--space-lg) var(--space-xl);
+    background: rgba(0, 196, 204, 0.03);
+    border: 1px solid rgba(0, 196, 204, 0.15);
+    border-radius: var(--radius-lg);
+    font-size: var(--text-sm);
+    color: var(--text-secondary);
+    line-height: 1.6;
+  }
+
+  .insight-icon {
+    font-size: var(--text-xl);
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  .insight-text strong {
+    color: var(--text-heading);
   }
 
   @media (max-width: 768px) {
