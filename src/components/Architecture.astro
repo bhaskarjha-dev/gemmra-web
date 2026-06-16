@@ -1,4 +1,27 @@
 ---
+const pipelines = [
+  {
+    id: 'data',
+    label: 'Data Pipeline',
+    subtitle: 'FDA FAERS + BioDEX + OnSIDES → 32,355 training pairs across 4 task types',
+    img: '/diagrams/08_data_pipeline_ppt_simple.svg',
+    alt: 'Gemmra Data Pipeline — FAERS, BioDEX, OnSIDES ingestion through cleaning, prompt building, and decontamination',
+  },
+  {
+    id: 'training',
+    label: 'Training Pipeline',
+    subtitle: 'bf16 LoRA SFT on Gemma 4 31B-it → 95 GB VRAM on AMD MI300X (192 GB HBM3)',
+    img: '/diagrams/11_training_pipeline_ppt.svg',
+    alt: 'Gemmra Training Pipeline — bf16 LoRA SFT on Gemma 4 31B using AMD MI300X 192GB HBM3',
+  },
+  {
+    id: 'evaluation',
+    label: 'Evaluation Pipeline',
+    subtitle: '3,650 decontaminated samples → composite 0.862 across T1–T4 pharmacovigilance tasks',
+    img: '/diagrams/13_evaluation_pipeline_ppt.svg',
+    alt: 'Gemmra Evaluation Pipeline — 3,650 decontaminated samples across T1-T4 pharmacovigilance tasks',
+  },
+];
 ---
 
 <section class="architecture-section section reveal" id="architecture">
@@ -6,45 +29,79 @@
     <details class="arch-details" open>
       <summary class="arch-summary reveal delay-100">
         <div class="arch-summary-content">
-          <h2 class="section-title" style="margin-bottom:0;">Solution <span class="accent-text">Architecture.</span></h2>
+          <h2 class="section-title" style="margin-bottom:0;">End-to-End <span class="accent-text">Pipeline.</span></h2>
           <span class="arch-toggle-hint">
             <svg class="arch-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
           </span>
         </div>
-        <p class="section-subtitle" style="margin-top:var(--space-sm);">End-to-end pipeline: data engineering → SFT training → evaluation on AMD MI300X.</p>
+        <p class="section-subtitle" style="margin-top:var(--space-sm);">Three interconnected pipelines — from raw FDA data to validated clinical AI.<br/>Every step is reproducible, open source, and documented.</p>
       </summary>
 
       <div class="arch-content reveal delay-200">
-        <div class="diagram-grid">
-          <div class="diagram-card">
-            <h3 class="diagram-label">Data Pipeline</h3>
-            <div class="diagram-wrap">
-              <img src="/diagrams/08_data_pipeline_ppt_simple.svg" alt="Gemmra Data Pipeline — FAERS, BioDEX, OnSIDES ingestion through cleaning, prompt building, and decontamination" loading="lazy" />
-            </div>
-          </div>
-
-          <div class="diagram-card">
-            <h3 class="diagram-label">Training Pipeline</h3>
-            <div class="diagram-wrap">
-              <img src="/diagrams/11_training_pipeline_ppt.svg" alt="Gemmra Training Pipeline — bf16 LoRA SFT on Gemma 4 31B using AMD MI300X 192GB HBM3" loading="lazy" />
-            </div>
-          </div>
-
-          <div class="diagram-card">
-            <h3 class="diagram-label">Evaluation Pipeline</h3>
-            <div class="diagram-wrap">
-              <img src="/diagrams/13_evaluation_pipeline_ppt.svg" alt="Gemmra Evaluation Pipeline — 3,650 decontaminated samples across T1-T4 pharmacovigilance tasks" loading="lazy" />
-            </div>
-          </div>
+        <!-- Tab Bar -->
+        <div class="pipeline-tabs" role="tablist">
+          {pipelines.map((p, i) => (
+            <button
+              class={`pipeline-tab ${i === 0 ? 'active' : ''}`}
+              role="tab"
+              aria-selected={i === 0 ? 'true' : 'false'}
+              aria-controls={`panel-${p.id}`}
+              data-tab={p.id}
+            >
+              {p.label}
+            </button>
+          ))}
         </div>
+
+        <!-- Tab Panels -->
+        {pipelines.map((p, i) => (
+          <div
+            class={`pipeline-panel ${i === 0 ? 'active' : ''}`}
+            id={`panel-${p.id}`}
+            role="tabpanel"
+            data-panel={p.id}
+          >
+            <p class="panel-subtitle">{p.subtitle}</p>
+            <div class="diagram-wrap">
+              <img src={p.img} alt={p.alt} loading={i === 0 ? 'eager' : 'lazy'} />
+            </div>
+          </div>
+        ))}
       </div>
     </details>
   </div>
 </section>
 
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const tablist = document.querySelector('.pipeline-tabs');
+    if (!tablist) return;
+
+    tablist.addEventListener('click', (e) => {
+      const btn = (e.target as HTMLElement).closest('.pipeline-tab') as HTMLButtonElement | null;
+      if (!btn) return;
+
+      const tabId = btn.dataset.tab;
+
+      // Deactivate all
+      document.querySelectorAll('.pipeline-tab').forEach(t => {
+        t.classList.remove('active');
+        t.setAttribute('aria-selected', 'false');
+      });
+      document.querySelectorAll('.pipeline-panel').forEach(p => p.classList.remove('active'));
+
+      // Activate clicked
+      btn.classList.add('active');
+      btn.setAttribute('aria-selected', 'true');
+      const panel = document.getElementById(`panel-${tabId}`);
+      if (panel) panel.classList.add('active');
+    });
+  });
+</script>
+
 <style>
   .architecture-section {
-    background: var(--bg-secondary);
+    background: var(--bg-primary);
     position: relative;
   }
 
@@ -99,50 +156,102 @@
     margin-top: var(--space-3xl);
   }
 
-  /* Diagram Grid */
-  .diagram-grid {
+  /* Tab Bar */
+  .pipeline-tabs {
     display: flex;
-    flex-direction: column;
-    gap: var(--space-2xl);
+    gap: var(--space-xl);
+    border-bottom: 1px solid var(--border-subtle);
+    margin-bottom: var(--space-xl);
   }
 
-  .diagram-card {
-    background: var(--bg-primary);
-    border: 1px solid var(--border-card);
-    border-radius: var(--radius-xl);
-    overflow: hidden;
-    transition: border-color var(--transition-base), box-shadow var(--transition-base);
-  }
-
-  .diagram-card:hover {
-    border-color: var(--border-accent);
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
-  }
-
-  .diagram-label {
+  .pipeline-tab {
+    background: none;
+    border: none;
+    padding: var(--space-md) var(--space-sm);
     font-family: var(--font-display);
     font-size: var(--text-base);
-    font-weight: 700;
-    color: var(--text-heading);
-    padding: var(--space-md) var(--space-lg);
-    border-bottom: 1px solid var(--border-subtle);
-    background: rgba(0, 196, 204, 0.02);
+    font-weight: 500;
+    color: var(--text-muted);
+    cursor: pointer;
+    position: relative;
+    transition: color var(--transition-fast);
+    white-space: nowrap;
+  }
+
+  .pipeline-tab::after {
+    content: '';
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: transparent;
+    transition: background var(--transition-fast);
+  }
+
+  .pipeline-tab:hover {
+    color: var(--text-secondary);
+  }
+
+  .pipeline-tab.active {
+    color: var(--accent-primary);
+    font-weight: 600;
+  }
+
+  .pipeline-tab.active::after {
+    background: var(--accent-primary);
+  }
+
+  /* Panels */
+  .pipeline-panel {
+    display: none;
+  }
+
+  .pipeline-panel.active {
+    display: block;
+    animation: fadePanel 0.3s ease;
+  }
+
+  @keyframes fadePanel {
+    from { opacity: 0; transform: translateY(6px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .panel-subtitle {
+    font-size: var(--text-sm);
+    color: var(--text-secondary);
+    margin-bottom: var(--space-lg);
+    font-family: var(--font-mono);
+    letter-spacing: 0.01em;
   }
 
   .diagram-wrap {
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-card);
+    border-radius: var(--radius-xl);
     padding: var(--space-lg);
-    display: flex;
-    justify-content: center;
     overflow-x: auto;
+    transition: border-color var(--transition-base);
+  }
+
+  .diagram-wrap:hover {
+    border-color: var(--border-accent);
   }
 
   .diagram-wrap img {
     max-width: 100%;
     height: auto;
-    border-radius: var(--radius-md);
+    display: block;
   }
 
-  @media (max-width: 768px) {
+  @media (max-width: 640px) {
+    .pipeline-tabs {
+      gap: var(--space-md);
+      overflow-x: auto;
+    }
+    .pipeline-tab {
+      font-size: var(--text-sm);
+    }
     .diagram-wrap {
       padding: var(--space-md);
     }
