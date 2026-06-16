@@ -5,7 +5,7 @@
   "private": true,
   "scripts": {
     "dev": "astro dev",
-    "build": "astro build",
+    "build": "astro build && node -e \"const fs = require('fs'); ['dist/_redirects', 'dist/client/_redirects'].forEach(f => fs.existsSync(f) && fs.unlinkSync(f))\"",
     "preview": "astro preview"
   },
   "devDependencies": {
