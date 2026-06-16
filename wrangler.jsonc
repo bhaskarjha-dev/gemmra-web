@@ -1,0 +1,8 @@
+{
+	"$schema": "node_modules/wrangler/config-schema.json",
+	"name": "gemmra-web",
+	"compatibility_date": "2025-05-01",
+	"assets": {
+		"directory": "./dist"
+	}
+}
