@@ -25,7 +25,7 @@ const approaches = [
     highlight: false,
   },
   {
-    name: 'GRPO',
+    name: 'DAPO/GRPO',
     status: 'Validated Ceiling',
     statusClass: 'status-validated',
     composite: '0.828',
@@ -33,13 +33,13 @@ const approaches = [
     reasoning: '83–279 tokens',
     reasoningNote: 'Plain text',
     reasoningClass: 'reasoning-neutral',
-    description: 'RL on SFT gained only +0.003 composite, then reward variance collapsed. WiSE-FT trades 4% accuracy for richer reasoning. Both prove SFT captured all learnable signal.',
+    description: 'DAPO (a frontier GRPO variant) on SFT gained only +0.003 composite, then reward variance collapsed. Both approaches prove SFT captured all learnable signal.',
     highlight: false,
   },
 ];
 ---
 
-<section class="training-approaches section" id="approaches">
+<section class="training-approaches section" id="approach">
   <div class="container">
     <h2 class="section-title">Three approaches. <span class="accent-text">One conclusion.</span></h2>
     <p class="section-subtitle">We explored SFT, weight interpolation, and reinforcement learning. Each proved the same thing: data quality is the bottleneck, not the algorithm.</p>
@@ -84,23 +84,7 @@ const approaches = [
       ))}
     </div>
 
-    <!-- Key Takeaway -->
-    <div class="takeaway-bar reveal delay-300">
-      <div class="takeaway-stat">
-        <span class="takeaway-number">2.1×</span>
-        <span class="takeaway-label">from one data fix</span>
-      </div>
-      <div class="takeaway-divider"></div>
-      <div class="takeaway-stat">
-        <span class="takeaway-number">+0.003</span>
-        <span class="takeaway-label">from RL fine-tuning</span>
-      </div>
-      <div class="takeaway-divider"></div>
-      <div class="takeaway-stat">
-        <span class="takeaway-number accent-text">∴</span>
-        <span class="takeaway-label">Fix the data, not the model</span>
-      </div>
-    </div>
+
 
     <!-- WiSE-FT α Sweep -->
     <div class="alpha-sweep reveal delay-400">

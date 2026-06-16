@@ -7,6 +7,7 @@ const milestones = [
     insight: 'First SFT checkpoint (0.23 epoch). T1/T4 already strong — model gets seriousness and causality right early.',
     change: 'Initial training',
     highlight: false,
+    shipped: false,
     taskScores: { t1: '1.000', t2: '0.134', t3: '0.387', t4: '0.960' },
   },
   {
@@ -16,6 +17,7 @@ const milestones = [
     insight: 'Found abstract[:500] truncation hiding ground truth from 92% of T2 training data. One line fix → T2 jumped 2.1×.',
     change: '+2.1× T2',
     highlight: true,
+    shipped: false,
     taskScores: { t1: '1.000', t2: '0.558', t3: '0.286', t4: '0.975' },
   },
   {
@@ -25,15 +27,17 @@ const milestones = [
     insight: 'Forensic audit found 62% NO / 38% YES label imbalance in T3. Rebalancing to 50:50 restored T3 from 0.286 to 0.884.',
     change: '+3× T3',
     highlight: true,
+    shipped: false,
     taskScores: { t1: '1.000', t2: '0.572', t3: '0.884', t4: '0.980' },
   },
   {
     version: 'Final',
     label: 'Full Eval',
     composite: '0.862',
-    insight: 'Validated across 3,645 decontaminated samples. T2 improved further at scale (0.572→0.667). Composite confirmed at 0.862.',
+    insight: 'Validated across 3,650 decontaminated samples. T2 improved further at scale (0.572→0.667). Composite confirmed at 0.862.',
     change: 'Shipped ✓',
-    highlight: false,
+    highlight: true,
+    shipped: true,
     taskScores: { t1: '0.995', t2: '0.667', t3: '0.801', t4: '0.986' },
   },
 ];
@@ -47,7 +51,7 @@ const milestones = [
     <div class="timeline">
       <div class="timeline-line"></div>
       {milestones.map((m, i) => (
-        <div class={`milestone reveal delay-${(i + 1) * 100} ${m.highlight ? 'milestone-highlight' : ''}`}>
+        <div class={`milestone reveal delay-${(i + 1) * 100} ${m.highlight ? 'milestone-highlight' : ''} ${m.shipped ? 'milestone-shipped' : ''}`}>
           <div class="milestone-marker">
             <div class="marker-dot"></div>
             {m.highlight && <div class="marker-pulse"></div>}
@@ -239,11 +243,24 @@ const milestones = [
     letter-spacing: -0.02em;
   }
 
-  .milestone-highlight .composite-value {
+  .milestone-shipped .composite-value {
     background: var(--gradient-accent-text);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
+  }
+
+  .milestone-shipped .milestone-card {
+    border-color: rgba(16, 185, 129, 0.4);
+    background: rgba(16, 185, 129, 0.03);
+    box-shadow: 0 0 20px rgba(16, 185, 129, 0.08);
+  }
+
+  .milestone-shipped .change-badge {
+    color: var(--color-success);
+    background: rgba(16, 185, 129, 0.12);
+    border-color: rgba(16, 185, 129, 0.3);
+    box-shadow: 0 0 8px rgba(16, 185, 129, 0.2);
   }
 
   .milestone-insight {

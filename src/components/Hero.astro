@@ -74,14 +74,7 @@ import TerminalDemo from './TerminalDemo.astro';
     </div>
 
   </div>
-  
-  <!-- Scroll Down Indicator -->
-  <div class="scroll-indicator reveal delay-400">
-    <div class="mouse-scroll">
-      <span class="mouse-wheel"></span>
-    </div>
-    <span class="scroll-text">Scroll to explore</span>
-  </div>
+
 </section>
 
 <script>
@@ -481,52 +474,4 @@ import TerminalDemo from './TerminalDemo.astro';
     transition: transform var(--transition-fast);
   }
 
-  /* Scroll Indicator Styling */
-  .scroll-indicator {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 8px;
-    margin-top: var(--space-3xl);
-    margin-bottom: calc(-1 * var(--space-2xl));
-    opacity: 0.5;
-    transition: opacity var(--transition-base);
-    cursor: pointer;
-    z-index: 20;
-    position: relative;
-    width: 100%;
-  }
-  .scroll-indicator:hover {
-    opacity: 0.95;
-  }
-  .mouse-scroll {
-    width: 20px;
-    height: 32px;
-    border: 2px solid var(--text-muted);
-    border-radius: 12px;
-    position: relative;
-  }
-  .mouse-wheel {
-    width: 4px;
-    height: 6px;
-    background: var(--accent-primary);
-    border-radius: 50%;
-    position: absolute;
-    top: 6px;
-    left: 50%;
-    transform: translateX(-50%);
-    animation: scrollWheel 2s ease-in-out infinite;
-  }
-  .scroll-text {
-    font-size: 10px;
-    text-transform: uppercase;
-    letter-spacing: 0.12em;
-    font-family: var(--font-mono);
-    color: var(--text-muted);
-  }
-  @keyframes scrollWheel {
-    0% { top: 6px; opacity: 1; }
-    50% { top: 16px; opacity: 0; }
-    100% { top: 6px; opacity: 1; }
-  }
 </style>

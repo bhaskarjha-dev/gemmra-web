@@ -115,11 +115,11 @@ import '@xterm/xterm/css/xterm.css';
       const { Terminal } = await import('@xterm/xterm');
 
       this.term = new Terminal({
-        cols: 70, // Fixed safe column count that fits the 600px container perfectly
+        cols: 58, // Reduced from 70 to prevent right-side overflow
         rows: 15,
         cursorBlink: true,
         fontFamily: 'monospace', // Start with fallback to prevent early texture corruption
-        fontSize: 13,
+        fontSize: 12.5,
         theme: {
           background: 'transparent',
           foreground: '#ededed',
@@ -281,9 +281,9 @@ import '@xterm/xterm/css/xterm.css';
         this.term.write('  Event: GI haemorrhage | Outcome: Hospitalized\r\n\r\n');
         this.term.write('\x1b[36mAnalyzing case against ICH E2A seriousness criteria...\x1b[0m\r\n\r\n');
         this.term.write('\x1b[2m<thinking>\x1b[0m\r\n');
-        this.term.write('  → Outcome "Hospitalized" maps to HO (Hospitalization)\r\n');
-        this.term.write('  → GI haemorrhage is a known serious AE for anticoagulants\r\n');
-        this.term.write('  → Warfarin is a high-risk narrow therapeutic index drug\r\n');
+        this.term.write('  → Outcome "Hospitalized" maps to HO\r\n');
+        this.term.write('  → GI haemorrhage: serious AE for anticoagulants\r\n');
+        this.term.write('  → Warfarin: narrow therapeutic index drug\r\n');
         this.term.write('  Assessment: \x1b[1;31mSERIOUS\x1b[0m — criterion HO met\r\n');
         this.term.write('\x1b[2m</thinking>\x1b[0m\r\n\r\n');
         this.term.write('\x1b[1;32mSERIOUS:\x1b[0m YES\r\n');
@@ -316,7 +316,7 @@ import '@xterm/xterm/css/xterm.css';
       
       await this.wait(1000);
       
-      if (!(await this.typeText('gemmra analyze --case-id case_0892', 50))) return;
+      if (!(await this.typeText('gemmra analyze --case case_0892', 50))) return;
       
       await this.wait(600);
       if(!this.isAutoDemo || !this.term || this.abortController?.signal.aborted) { this.isDemoRunning = false; return; }
@@ -340,15 +340,15 @@ import '@xterm/xterm/css/xterm.css';
       
       await this.wait(500);
       if(!this.isAutoDemo || !this.term || this.abortController?.signal.aborted) { this.isDemoRunning = false; return; }
-      this.term.write('  → Outcome "Hospitalized" maps to HO (Hospitalization)\r\n');
+      this.term.write('  → Outcome "Hospitalized" maps to HO\r\n');
       
       await this.wait(500);
       if(!this.isAutoDemo || !this.term || this.abortController?.signal.aborted) { this.isDemoRunning = false; return; }
-      this.term.write('  → GI haemorrhage is a known serious AE for anticoagulants\r\n');
+      this.term.write('  → GI haemorrhage: serious AE for anticoagulants\r\n');
       
       await this.wait(500);
       if(!this.isAutoDemo || !this.term || this.abortController?.signal.aborted) { this.isDemoRunning = false; return; }
-      this.term.write('  → Warfarin is a high-risk narrow therapeutic index drug\r\n');
+      this.term.write('  → Warfarin: narrow therapeutic index drug\r\n');
       
       await this.wait(500);
       if(!this.isAutoDemo || !this.term || this.abortController?.signal.aborted) { this.isDemoRunning = false; return; }
@@ -362,8 +362,8 @@ import '@xterm/xterm/css/xterm.css';
       if(!this.isAutoDemo || !this.term || this.abortController?.signal.aborted) { this.isDemoRunning = false; return; }
       this.term.write('\x1b[1;32mSERIOUS:\x1b[0m YES\r\n');
       this.term.write('\x1b[1;32mCRITERIA:\x1b[0m HO\r\n');
-      this.term.write('\x1b[1;32mRATIONALE:\x1b[0m Patient hospitalized for GI haemorrhage,\r\n');
-      this.term.write('           a known serious adverse event for Warfarin therapy.\r\n\r\n');
+      this.term.write('\x1b[1;32mRATIONALE:\x1b[0m Hospitalized for GI haemorrhage,\r\n');
+      this.term.write('  known serious AE for Warfarin.\r\n\r\n');
       
       await this.wait(1000);
       if(!this.isAutoDemo || !this.term || this.abortController?.signal.aborted) { this.isDemoRunning = false; return; }
@@ -481,8 +481,7 @@ import '@xterm/xterm/css/xterm.css';
     padding: var(--space-md);
     background: transparent;
     cursor: text;
-    overflow-x: auto; /* Handle fixed 70 cols on small screens safely */
-    scrollbar-width: none; /* Hide scrollbar for cleaner UI */
+    overflow: hidden; /* Clip any xterm canvas overflow cleanly */
   }
   
   .terminal-body::-webkit-scrollbar {

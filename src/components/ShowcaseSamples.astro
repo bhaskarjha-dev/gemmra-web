@@ -99,13 +99,14 @@ Evidence:
             <span class="patient-label">Events:</span> {s.events}
           </div>
 
-          <div class="showcase-trace">
-            <div class="trace-header">
+          <details class="showcase-trace" open>
+            <summary class="trace-header">
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
               Thinking Trace
-            </div>
+              <svg class="trace-chevron" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+            </summary>
             <pre class="trace-content"><code>{s.thinking}</code></pre>
-          </div>
+          </details>
 
           <div class="showcase-output">
             <div class="output-header">Structured Output</div>
@@ -241,6 +242,26 @@ Evidence:
     font-weight: 600;
     color: var(--accent-primary);
     font-family: var(--font-mono);
+    cursor: pointer;
+    list-style: none;
+    user-select: none;
+  }
+
+  .trace-header::-webkit-details-marker {
+    display: none;
+  }
+
+  .trace-chevron {
+    margin-left: auto;
+    transition: transform 0.2s ease;
+  }
+
+  .showcase-trace[open] .trace-chevron {
+    transform: rotate(180deg);
+  }
+
+  .showcase-trace:not([open]) .trace-header {
+    border-bottom: none;
   }
 
   .trace-content {

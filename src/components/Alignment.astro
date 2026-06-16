@@ -21,11 +21,11 @@
         <p class="alignment-desc">TCS serves 9 of the top 10 pharmaceutical companies globally. Drug safety case processing is a core operational challenge for these clients — averaging 100K+ cases/year per company. Gemmra directly addresses this by automating the four most time-consuming pharmacovigilance assessments.</p>
         <div class="alignment-stats">
           <div class="stat">
-            <span class="stat-value">2,000×</span>
+            <span class="stat-value">~2,000×</span>
             <span class="stat-label">Cost reduction per case</span>
           </div>
           <div class="stat">
-            <span class="stat-value">210×</span>
+            <span class="stat-value">~210×</span>
             <span class="stat-label">Faster than manual review</span>
           </div>
           <div class="stat">
@@ -37,8 +37,8 @@
 
       <!-- AMD MI300X -->
       <div class="alignment-card reveal delay-200">
-        <div class="alignment-icon">
-          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--amd-red)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+        <div class="alignment-icon alignment-icon-amd">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--accent-amd-red)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
             <rect x="4" y="4" width="16" height="16" rx="2"></rect>
             <rect x="9" y="9" width="6" height="6"></rect>
             <path d="M15 2v2"></path><path d="M15 20v2"></path>
@@ -93,7 +93,12 @@
           <div class="challenge">
             <span class="challenge-problem">No train/eval decontamination</span>
             <span class="challenge-arrow">→</span>
-            <span class="challenge-solution">MeditronFO-inspired content-hash splitting across 3,645 eval samples</span>
+            <span class="challenge-solution">MeditronFO-inspired content-hash splitting across 3,650 eval samples</span>
+          </div>
+          <div class="challenge">
+            <span class="challenge-problem">No drug-label ground truth</span>
+            <span class="challenge-arrow">→</span>
+            <span class="challenge-solution">Integrated OnSIDES (drug label side effects database) for T3 labelling assessment ground truth</span>
           </div>
         </div>
       </div>
@@ -135,6 +140,11 @@
     background: rgba(0, 196, 204, 0.04);
     border-radius: var(--radius-md);
     border: 1px solid var(--border-subtle);
+  }
+
+  .alignment-icon-amd {
+    background: rgba(237, 28, 36, 0.05);
+    border-color: rgba(237, 28, 36, 0.15);
   }
 
   .alignment-card h3 {

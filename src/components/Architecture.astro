@@ -1,0 +1,150 @@
+---
+---
+
+<section class="architecture-section section reveal" id="architecture">
+  <div class="container">
+    <details class="arch-details" open>
+      <summary class="arch-summary reveal delay-100">
+        <div class="arch-summary-content">
+          <h2 class="section-title" style="margin-bottom:0;">Solution <span class="accent-text">Architecture.</span></h2>
+          <span class="arch-toggle-hint">
+            <svg class="arch-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+          </span>
+        </div>
+        <p class="section-subtitle" style="margin-top:var(--space-sm);">End-to-end pipeline: data engineering → SFT training → evaluation on AMD MI300X.</p>
+      </summary>
+
+      <div class="arch-content reveal delay-200">
+        <div class="diagram-grid">
+          <div class="diagram-card">
+            <h3 class="diagram-label">Data Pipeline</h3>
+            <div class="diagram-wrap">
+              <img src="/diagrams/08_data_pipeline_ppt_simple.svg" alt="Gemmra Data Pipeline — FAERS, BioDEX, OnSIDES ingestion through cleaning, prompt building, and decontamination" loading="lazy" />
+            </div>
+          </div>
+
+          <div class="diagram-card">
+            <h3 class="diagram-label">Training Pipeline</h3>
+            <div class="diagram-wrap">
+              <img src="/diagrams/11_training_pipeline_ppt.svg" alt="Gemmra Training Pipeline — bf16 LoRA SFT on Gemma 4 31B using AMD MI300X 192GB HBM3" loading="lazy" />
+            </div>
+          </div>
+
+          <div class="diagram-card">
+            <h3 class="diagram-label">Evaluation Pipeline</h3>
+            <div class="diagram-wrap">
+              <img src="/diagrams/13_evaluation_pipeline_ppt.svg" alt="Gemmra Evaluation Pipeline — 3,650 decontaminated samples across T1-T4 pharmacovigilance tasks" loading="lazy" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </details>
+  </div>
+</section>
+
+<style>
+  .architecture-section {
+    background: var(--bg-secondary);
+    position: relative;
+  }
+
+  .architecture-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--border-accent), transparent);
+  }
+
+  .arch-details {
+    width: 100%;
+  }
+
+  .arch-summary {
+    cursor: pointer;
+    list-style: none;
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .arch-summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .arch-summary-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-md);
+  }
+
+  .arch-toggle-hint {
+    display: flex;
+    align-items: center;
+    color: var(--text-muted);
+  }
+
+  .arch-chevron {
+    transition: transform 0.3s ease;
+  }
+
+  .arch-details[open] .arch-chevron {
+    transform: rotate(180deg);
+  }
+
+  .arch-content {
+    margin-top: var(--space-3xl);
+  }
+
+  /* Diagram Grid */
+  .diagram-grid {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2xl);
+  }
+
+  .diagram-card {
+    background: var(--bg-primary);
+    border: 1px solid var(--border-card);
+    border-radius: var(--radius-xl);
+    overflow: hidden;
+    transition: border-color var(--transition-base), box-shadow var(--transition-base);
+  }
+
+  .diagram-card:hover {
+    border-color: var(--border-accent);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+  }
+
+  .diagram-label {
+    font-family: var(--font-display);
+    font-size: var(--text-base);
+    font-weight: 700;
+    color: var(--text-heading);
+    padding: var(--space-md) var(--space-lg);
+    border-bottom: 1px solid var(--border-subtle);
+    background: rgba(0, 196, 204, 0.02);
+  }
+
+  .diagram-wrap {
+    padding: var(--space-lg);
+    display: flex;
+    justify-content: center;
+    overflow-x: auto;
+  }
+
+  .diagram-wrap img {
+    max-width: 100%;
+    height: auto;
+    border-radius: var(--radius-md);
+  }
+
+  @media (max-width: 768px) {
+    .diagram-wrap {
+      padding: var(--space-md);
+    }
+  }
+</style>
