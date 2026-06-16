@@ -1,16 +1,16 @@
 ---
 const resultsData = [
-  { task: 'T1 Seriousness', metric: 'F1 Score', base: '0.840', gemmra: '0.995', improvement: '+18.5%', samples: '1,027', status: '✅ Near-perfect', highlightClass: 'success' },
-  { task: 'T2 MedDRA Coding', metric: 'Weighted', base: '0.080', gemmra: '0.667', improvement: '+733%', samples: '759', status: '🔶 Room to grow', highlightClass: 'warning' },
-  { task: 'T3 Labelling', metric: 'F1 Score', base: '0.720', gemmra: '0.801', improvement: '+11.3%', samples: '980', status: '✅ Strong', highlightClass: 'strong' },
-  { task: 'T4 Causality', metric: 'Weighted', base: '0.420', gemmra: '0.986', improvement: '+135%', samples: '794', status: '✅ Near-perfect', highlightClass: 'success' },
+  { task: 'T1 Seriousness', metric: 'F1 Score', base: '0.977', gemmra: '0.995', improvement: '+1.8%', samples: '1,027', status: '✅ Near-perfect', highlightClass: 'success' },
+  { task: 'T2 MedDRA Coding', metric: 'Weighted', base: '0.311', gemmra: '0.667', improvement: '+114%', samples: '759', status: '🔶 Room to grow', highlightClass: 'warning' },
+  { task: 'T3 Labelling', metric: 'F1 Score', base: '0.782', gemmra: '0.801', improvement: '+2.4%', samples: '980', status: '✅ Strong', highlightClass: 'strong' },
+  { task: 'T4 Causality', metric: 'Weighted', base: '0.845', gemmra: '0.986', improvement: '+16.7%', samples: '794', status: '✅ Near-perfect', highlightClass: 'success' },
 ];
 ---
 
 <section class="comparison section" id="results">
   <div class="container">
     <h2 class="section-title">Base model vs. <span class="accent-text">Gemmra.</span></h2>
-    <p class="section-subtitle">Same model, same hardware. The difference is data-first fine-tuning and iterative debugging.<br/>Evaluated on 3,645 decontaminated samples across 4 pharmacovigilance tasks.</p>
+    <p class="section-subtitle">Same model, same hardware. The difference is data-first fine-tuning — plus auditable reasoning traces and 100% format compliance.<br/>Base model evaluated with format-friendly prompts & thinking disabled (250 samples). Gemmra evaluated on 3,645 decontaminated samples with zero prompt engineering.</p>
 
     <div class="table-container">
       <table class="compare-table">
@@ -18,7 +18,7 @@ const resultsData = [
           <tr>
             <th class="task-col">Task</th>
             <th>Metric</th>
-            <th class="base-col">Base Gemma 4</th>
+            <th class="base-col">Base Gemma 4†</th>
             <th class="gemmra-col">Gemmra (SFT)</th>
             <th class="improvement-col">Improvement</th>
             <th>Samples</th>
@@ -41,22 +41,22 @@ const resultsData = [
           <tr class="composite-row">
             <td class="task-cell">Composite Score</td>
             <td>Average</td>
-            <td class="base-score">0.515</td>
+            <td class="base-score">0.729</td>
             <td class="score-cell composite">
               <span>0.862</span>
             </td>
-            <td class="improvement-cell composite-improvement">+67.4%</td>
+            <td class="improvement-cell composite-improvement">+18.2%</td>
             <td class="samples-cell">3,645</td>
           </tr>
           <!-- Format Row -->
           <tr class="table-row perfect-row">
             <td class="task-cell">Format Compliance</td>
             <td>All tasks</td>
-            <td class="base-score base-fail">0%</td>
+            <td class="base-score base-fail">N/A‡</td>
             <td class="score-cell perfect">
               <span>100%</span>
             </td>
-            <td class="improvement-cell">∞</td>
+            <td class="improvement-cell">—</td>
             <td class="samples-cell">3,645</td>
           </tr>
         </tbody>
@@ -67,7 +67,8 @@ const resultsData = [
     <div class="insight-callout reveal delay-200">
       <div class="insight-icon">💡</div>
       <div class="insight-text">
-        <strong>Key finding:</strong> The biggest gain — T2 MedDRA at <span class="accent-text">+733%</span> — came from fixing a single line in the data pipeline, not from model architecture changes. Data quality beats model tuning.
+        <strong>Key finding:</strong> The base model achieves 0.729 composite <em>only</em> with hand-crafted format prompts and thinking disabled. Gemmra achieves <span class="accent-text">0.862</span> with <strong>zero prompt engineering</strong>, adds auditable thinking traces, and hits 100% format compliance — the gap between "works in a lab" and "works in production."
+        <br/><small style="opacity: 0.5; margin-top: 4px; display: block;">†Base evaluated with task-specific format instructions & enable_thinking=False &nbsp;‡Format compliance not measured for base model</small>
       </div>
     </div>
   </div>

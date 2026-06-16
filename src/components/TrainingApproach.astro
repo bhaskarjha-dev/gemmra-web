@@ -87,7 +87,7 @@ const approaches = [
     <!-- Key Takeaway -->
     <div class="takeaway-bar reveal delay-300">
       <div class="takeaway-stat">
-        <span class="takeaway-number">3.9×</span>
+        <span class="takeaway-number">2.1×</span>
         <span class="takeaway-label">from one data fix</span>
       </div>
       <div class="takeaway-divider"></div>
@@ -100,6 +100,71 @@ const approaches = [
         <span class="takeaway-number accent-text">∴</span>
         <span class="takeaway-label">Fix the data, not the model</span>
       </div>
+    </div>
+
+    <!-- WiSE-FT α Sweep -->
+    <div class="alpha-sweep reveal delay-400">
+      <h3 class="sweep-title">WiSE-FT α Sweep — Reasoning vs. Accuracy</h3>
+      <p class="sweep-subtitle">Blending fine-tuned weights with pre-trained weights at different α values. Higher α = more SFT format, lower α = more base model reasoning.</p>
+      <div class="sweep-table-wrap">
+        <table class="sweep-table">
+          <thead>
+            <tr>
+              <th>α</th>
+              <th>Composite</th>
+              <th>T1 F1</th>
+              <th>T2</th>
+              <th>T3 F1</th>
+              <th>T4</th>
+              <th>Format</th>
+              <th>Reasoning</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="sweep-best">
+              <td><strong>1.0</strong></td>
+              <td class="sweep-score"><strong>0.862</strong></td>
+              <td>0.995</td>
+              <td>0.667</td>
+              <td>0.801</td>
+              <td>0.986</td>
+              <td class="sweep-good">100%</td>
+              <td class="sweep-warn">45 words</td>
+            </tr>
+            <tr>
+              <td><strong>0.9</strong></td>
+              <td class="sweep-score">0.825</td>
+              <td>0.985</td>
+              <td>0.532</td>
+              <td>0.852</td>
+              <td>0.930</td>
+              <td class="sweep-good">99%</td>
+              <td class="sweep-deep">400+ words</td>
+            </tr>
+            <tr>
+              <td>0.8</td>
+              <td class="sweep-score">0.782</td>
+              <td>0.971</td>
+              <td>0.416</td>
+              <td>0.825</td>
+              <td>0.915</td>
+              <td class="sweep-good">99.5%</td>
+              <td class="sweep-deep">400+ words</td>
+            </tr>
+            <tr>
+              <td>0.7</td>
+              <td class="sweep-score">0.703</td>
+              <td>0.939</td>
+              <td>0.286</td>
+              <td>0.867</td>
+              <td>0.720</td>
+              <td class="sweep-good">99.5%</td>
+              <td class="sweep-deep">400+ words</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="sweep-note">α=0.9 recovers genuine clinical reasoning (400+ words) while only losing ~4% composite. T3 <em>improved</em> from 0.801→0.852 as base model clinical knowledge mixed in.</p>
     </div>
   </div>
 </section>
@@ -339,5 +404,100 @@ const approaches = [
       width: 60px;
       height: 1px;
     }
+  }
+
+  /* WiSE-FT α Sweep */
+  .alpha-sweep {
+    margin-top: var(--space-3xl);
+    padding: var(--space-xl);
+    background: var(--bg-primary);
+    border: 1px solid var(--border-card);
+    border-radius: var(--radius-xl);
+  }
+
+  .sweep-title {
+    font-family: var(--font-display);
+    font-size: var(--text-lg);
+    font-weight: 700;
+    color: var(--text-heading);
+    margin-bottom: var(--space-xs);
+  }
+
+  .sweep-subtitle {
+    font-size: var(--text-sm);
+    color: var(--text-muted);
+    margin-bottom: var(--space-lg);
+    line-height: 1.5;
+  }
+
+  .sweep-table-wrap {
+    overflow-x: auto;
+    border-radius: var(--radius-md);
+    border: 1px solid var(--border-subtle);
+  }
+
+  .sweep-table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: center;
+    font-size: var(--text-sm);
+  }
+
+  .sweep-table th {
+    padding: var(--space-sm) var(--space-md);
+    font-weight: 600;
+    color: var(--text-heading);
+    background: var(--bg-tertiary);
+    border-bottom: 1px solid var(--border-card);
+    font-family: var(--font-display);
+    font-size: var(--text-xs);
+    white-space: nowrap;
+  }
+
+  .sweep-table td {
+    padding: var(--space-sm) var(--space-md);
+    border-bottom: 1px solid var(--border-subtle);
+    color: var(--text-secondary);
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    white-space: nowrap;
+  }
+
+  .sweep-table tr:last-child td {
+    border-bottom: none;
+  }
+
+  .sweep-best {
+    background: rgba(0, 196, 204, 0.03);
+  }
+
+  .sweep-score {
+    font-weight: 600;
+    color: var(--text-heading);
+  }
+
+  .sweep-good {
+    color: var(--color-success);
+  }
+
+  .sweep-warn {
+    color: var(--color-warning);
+  }
+
+  .sweep-deep {
+    color: var(--color-success);
+  }
+
+  .sweep-note {
+    font-size: var(--text-xs);
+    color: var(--text-muted);
+    margin-top: var(--space-md);
+    line-height: 1.5;
+  }
+
+  .sweep-note em {
+    color: var(--color-success);
+    font-style: normal;
+    font-weight: 600;
   }
 </style>

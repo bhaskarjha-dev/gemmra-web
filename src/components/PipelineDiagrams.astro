@@ -1,0 +1,175 @@
+---
+const pipelines = [
+  {
+    id: 'data',
+    title: 'Data Pipeline',
+    desc: 'FDA FAERS + BioDEX + OnSIDES → 32,355 training pairs across 4 task types',
+    svg: '/diagrams/08_data_pipeline_ppt_simple.svg',
+  },
+  {
+    id: 'training',
+    title: 'Training Pipeline',
+    desc: 'bf16 LoRA SFT → WiSE-FT weight merging → GRPO validation',
+    svg: '/diagrams/11_training_pipeline_ppt.svg',
+  },
+  {
+    id: 'evaluation',
+    title: 'Evaluation Pipeline',
+    desc: '3,645 decontaminated samples × 4 task-specific metrics → composite score',
+    svg: '/diagrams/13_evaluation_pipeline_ppt.svg',
+  },
+];
+---
+
+<section class="pipelines-section section" id="pipelines">
+  <div class="container">
+    <h2 class="section-title">End-to-End <span class="accent-text">Pipeline.</span></h2>
+    <p class="section-subtitle">Three interconnected pipelines — from raw FDA data to validated clinical AI. Every step is reproducible, open source, and documented.</p>
+
+    <div class="pipeline-tabs" role="tablist">
+      {pipelines.map((p, i) => (
+        <button
+          class={`pipeline-tab ${i === 0 ? 'active' : ''}`}
+          role="tab"
+          data-tab={p.id}
+          aria-selected={i === 0 ? 'true' : 'false'}
+        >
+          {p.title}
+        </button>
+      ))}
+    </div>
+
+    <div class="pipeline-panels">
+      {pipelines.map((p, i) => (
+        <div
+          class={`pipeline-panel ${i === 0 ? 'active' : ''}`}
+          data-panel={p.id}
+          role="tabpanel"
+        >
+          <p class="pipeline-desc">{p.desc}</p>
+          <div class="pipeline-diagram">
+            <img src={p.svg} alt={`${p.title} diagram`} loading="lazy" />
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<script>
+  document.addEventListener('astro:page-load', () => {
+    const tabs = document.querySelectorAll('.pipeline-tab');
+    const panels = document.querySelectorAll('.pipeline-panel');
+
+    tabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        const target = (tab as HTMLElement).dataset.tab;
+        
+        tabs.forEach(t => {
+          t.classList.remove('active');
+          t.setAttribute('aria-selected', 'false');
+        });
+        panels.forEach(p => p.classList.remove('active'));
+
+        tab.classList.add('active');
+        tab.setAttribute('aria-selected', 'true');
+        const panel = document.querySelector(`[data-panel="${target}"]`);
+        if (panel) panel.classList.add('active');
+      });
+    });
+  });
+</script>
+
+<style>
+  .pipelines-section {
+    background: var(--bg-primary);
+  }
+
+  .pipeline-tabs {
+    display: flex;
+    gap: var(--space-sm);
+    margin-bottom: var(--space-xl);
+    border-bottom: 1px solid var(--border-subtle);
+    padding-bottom: var(--space-sm);
+  }
+
+  .pipeline-tab {
+    padding: var(--space-sm) var(--space-lg);
+    border: none;
+    background: transparent;
+    color: var(--text-muted);
+    font-family: var(--font-display);
+    font-size: var(--text-sm);
+    font-weight: 600;
+    cursor: pointer;
+    border-radius: var(--radius-md) var(--radius-md) 0 0;
+    transition: color var(--transition-fast), background var(--transition-fast);
+    position: relative;
+  }
+
+  .pipeline-tab::after {
+    content: '';
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: transparent;
+    border-radius: 2px 2px 0 0;
+    transition: background var(--transition-fast);
+  }
+
+  .pipeline-tab:hover {
+    color: var(--text-heading);
+    background: rgba(0, 196, 204, 0.03);
+  }
+
+  .pipeline-tab.active {
+    color: var(--accent-primary);
+  }
+
+  .pipeline-tab.active::after {
+    background: var(--accent-primary);
+  }
+
+  .pipeline-panel {
+    display: none;
+  }
+
+  .pipeline-panel.active {
+    display: block;
+  }
+
+  .pipeline-desc {
+    font-size: var(--text-sm);
+    color: var(--text-secondary);
+    margin-bottom: var(--space-lg);
+  }
+
+  .pipeline-diagram {
+    background: #ffffff;
+    border: 1px solid var(--border-card);
+    border-radius: var(--radius-xl);
+    padding: var(--space-lg);
+    overflow-x: auto;
+  }
+
+  .pipeline-diagram img {
+    width: 100%;
+    height: auto;
+    display: block;
+    min-height: 200px;
+  }
+
+  @media (max-width: 600px) {
+    .pipeline-tabs {
+      flex-wrap: wrap;
+    }
+    .pipeline-tab {
+      flex: 1;
+      text-align: center;
+      font-size: var(--text-xs);
+      padding: var(--space-sm);
+    }
+  }
+</style>

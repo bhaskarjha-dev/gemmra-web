@@ -1,0 +1,237 @@
+---
+---
+
+<section class="alignment-section section" id="alignment">
+  <div class="container">
+    <h2 class="section-title">Built for <span class="accent-text">Production.</span></h2>
+    <p class="section-subtitle">How Gemmra aligns with enterprise pharmaceutical operations and AMD hardware strategy.</p>
+
+    <div class="alignment-grid">
+      <!-- TCS Life Sciences -->
+      <div class="alignment-card reveal delay-100">
+        <div class="alignment-icon">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--accent-primary)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3 21h18"></path>
+            <path d="M9 8h1"></path><path d="M9 12h1"></path><path d="M9 16h1"></path>
+            <path d="M14 8h1"></path><path d="M14 12h1"></path><path d="M14 16h1"></path>
+            <path d="M5 21V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16"></path>
+          </svg>
+        </div>
+        <h3>TCS Life Sciences</h3>
+        <p class="alignment-desc">TCS serves 9 of the top 10 pharmaceutical companies globally. Drug safety case processing is a core operational challenge for these clients — averaging 100K+ cases/year per company. Gemmra directly addresses this by automating the four most time-consuming pharmacovigilance assessments.</p>
+        <div class="alignment-stats">
+          <div class="stat">
+            <span class="stat-value">2,000×</span>
+            <span class="stat-label">Cost reduction per case</span>
+          </div>
+          <div class="stat">
+            <span class="stat-value">210×</span>
+            <span class="stat-label">Faster than manual review</span>
+          </div>
+          <div class="stat">
+            <span class="stat-value">100%</span>
+            <span class="stat-label">Format compliance</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- AMD MI300X -->
+      <div class="alignment-card reveal delay-200">
+        <div class="alignment-icon">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--amd-red)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="4" y="4" width="16" height="16" rx="2"></rect>
+            <rect x="9" y="9" width="6" height="6"></rect>
+            <path d="M15 2v2"></path><path d="M15 20v2"></path>
+            <path d="M2 15h2"></path><path d="M20 15h2"></path>
+            <path d="M9 2v2"></path><path d="M9 20v2"></path>
+            <path d="M2 9h2"></path><path d="M20 9h2"></path>
+          </svg>
+        </div>
+        <h3>AMD MI300X Advantage</h3>
+        <p class="alignment-desc">Our training requires 95 GB VRAM for bf16 LoRA across all linear layers of a 31B model. This is physically impossible on any single NVIDIA GPU (A100/H100 max at 80 GB). AMD MI300X's 192 GB HBM3 is the enabling technology — zero quantization means higher quality gradients and a better final model.</p>
+        <div class="alignment-stats">
+          <div class="stat">
+            <span class="stat-value">95 / 192 GB</span>
+            <span class="stat-label">Training VRAM (bf16)</span>
+          </div>
+          <div class="stat">
+            <span class="stat-value">61 / 192 GB</span>
+            <span class="stat-label">Inference VRAM (31.8%)</span>
+          </div>
+          <div class="stat">
+            <span class="stat-value">1.9 hrs</span>
+            <span class="stat-label">Full SFT training time</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Data Challenges -->
+      <div class="alignment-card alignment-card-wide reveal delay-300">
+        <div class="alignment-icon">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--color-warning)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"></path>
+          </svg>
+        </div>
+        <h3>Data Challenges We Solved</h3>
+        <p class="alignment-desc">We claim "data-first debugging" — here's the evidence:</p>
+        <div class="challenges-list">
+          <div class="challenge">
+            <span class="challenge-problem">MedDRA is proprietary</span>
+            <span class="challenge-arrow">→</span>
+            <span class="challenge-solution">Engineered PT training from BioDEX open biomedical literature + FAERS reaction terms</span>
+          </div>
+          <div class="challenge">
+            <span class="challenge-problem">FDA redacts doctor narratives</span>
+            <span class="challenge-arrow">→</span>
+            <span class="challenge-solution">Built structured prompts from remaining FAERS fields (demographics, drug info, outcomes)</span>
+          </div>
+          <div class="challenge">
+            <span class="challenge-problem">BioDEX truncated at 500 chars</span>
+            <span class="challenge-arrow">→</span>
+            <span class="challenge-solution">Fixed one line → 2.1× improvement on MedDRA coding (92% of training data was corrupted)</span>
+          </div>
+          <div class="challenge">
+            <span class="challenge-problem">No train/eval decontamination</span>
+            <span class="challenge-arrow">→</span>
+            <span class="challenge-solution">MeditronFO-inspired content-hash splitting across 3,645 eval samples</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .alignment-section {
+    background: var(--bg-primary);
+  }
+
+  .alignment-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-xl);
+  }
+
+  .alignment-card {
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-card);
+    border-radius: var(--radius-xl);
+    padding: var(--space-xl);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+  }
+
+  .alignment-card-wide {
+    grid-column: 1 / -1;
+  }
+
+  .alignment-icon {
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 196, 204, 0.04);
+    border-radius: var(--radius-md);
+    border: 1px solid var(--border-subtle);
+  }
+
+  .alignment-card h3 {
+    font-family: var(--font-display);
+    font-size: var(--text-lg);
+    font-weight: 700;
+    color: var(--text-heading);
+  }
+
+  .alignment-desc {
+    font-size: var(--text-sm);
+    color: var(--text-secondary);
+    line-height: 1.6;
+  }
+
+  .alignment-stats {
+    display: flex;
+    gap: var(--space-xl);
+    padding-top: var(--space-md);
+    border-top: 1px solid var(--border-subtle);
+    flex-wrap: wrap;
+  }
+
+  .stat {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .stat-value {
+    font-family: var(--font-mono);
+    font-size: var(--text-lg);
+    font-weight: 700;
+    color: var(--accent-primary);
+  }
+
+  .stat-label {
+    font-size: var(--text-xs);
+    color: var(--text-muted);
+  }
+
+  .challenges-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+  }
+
+  .challenge {
+    display: flex;
+    align-items: center;
+    gap: var(--space-md);
+    padding: var(--space-sm) var(--space-md);
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: var(--radius-md);
+    border: 1px solid var(--border-subtle);
+    font-size: var(--text-sm);
+    flex-wrap: wrap;
+  }
+
+  .challenge-problem {
+    color: var(--color-warning);
+    font-weight: 600;
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    white-space: nowrap;
+  }
+
+  .challenge-arrow {
+    color: var(--text-muted);
+    font-size: var(--text-sm);
+  }
+
+  .challenge-solution {
+    color: var(--text-secondary);
+    font-size: var(--text-xs);
+    flex: 1;
+    min-width: 200px;
+  }
+
+  @media (max-width: 900px) {
+    .alignment-grid {
+      grid-template-columns: 1fr;
+    }
+    .alignment-card-wide {
+      grid-column: auto;
+    }
+    .alignment-stats {
+      flex-direction: column;
+      gap: var(--space-md);
+    }
+    .challenge {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: var(--space-xs);
+    }
+    .challenge-arrow {
+      display: none;
+    }
+  }
+</style>
