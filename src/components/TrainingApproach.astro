@@ -21,7 +21,7 @@ const approaches = [
     reasoning: '400+ words',
     reasoningNote: 'Deep reasoning',
     reasoningClass: 'reasoning-good',
-    description: 'Weight interpolation (α=0.9) blends SFT format with base model reasoning. Recovers deep ICH E2A criterion-by-criterion analysis.',
+    description: 'Weight interpolation explored to recover reasoning depth. α=0.9 trades ~4% accuracy for 10× richer thinking traces — a research contribution, not the primary model.',
     highlight: false,
   },
   {
@@ -33,7 +33,7 @@ const approaches = [
     reasoning: '83–279 tokens',
     reasoningNote: 'Plain text',
     reasoningClass: 'reasoning-neutral',
-    description: 'RL on WiSE-FT achieved +0.003 composite, then reward variance collapsed at 60%. Proves SFT captured all learnable signal.',
+    description: 'RL on SFT gained only +0.003 composite, then reward variance collapsed. WiSE-FT trades 4% accuracy for richer reasoning. Both prove SFT captured all learnable signal.',
     highlight: false,
   },
 ];
@@ -104,7 +104,7 @@ const approaches = [
 
     <!-- WiSE-FT α Sweep -->
     <div class="alpha-sweep reveal delay-400">
-      <h3 class="sweep-title">WiSE-FT α Sweep — Reasoning vs. Accuracy</h3>
+      <h3 class="sweep-title">WiSE-FT α Sweep — Exploring the Accuracy vs. Reasoning Trade-Off</h3>
       <p class="sweep-subtitle">Blending fine-tuned weights with pre-trained weights at different α values. Higher α = more SFT format, lower α = more base model reasoning.</p>
       <div class="sweep-table-wrap">
         <table class="sweep-table">
@@ -122,7 +122,7 @@ const approaches = [
           </thead>
           <tbody>
             <tr class="sweep-best">
-              <td><strong>1.0</strong></td>
+              <td><strong>1.0 (SFT)</strong></td>
               <td class="sweep-score"><strong>0.862</strong></td>
               <td>0.995</td>
               <td>0.667</td>
@@ -164,7 +164,7 @@ const approaches = [
           </tbody>
         </table>
       </div>
-      <p class="sweep-note">α=0.9 recovers genuine clinical reasoning (400+ words) while only losing ~4% composite. T3 <em>improved</em> from 0.801→0.852 as base model clinical knowledge mixed in.</p>
+      <p class="sweep-note">α=1.0 (pure SFT) is the primary model with highest accuracy. α=0.9 recovers deeper clinical reasoning at a ~4% accuracy cost — useful when audit trail depth matters more than raw metrics. T3 <em>improved</em> from 0.801→0.852 as base model clinical knowledge mixed in.</p>
     </div>
   </div>
 </section>
