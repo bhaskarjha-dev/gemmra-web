@@ -1,4 +1,4 @@
-﻿---
+---
 ---
 
 <section class="bento-section section reveal" id="architecture">
@@ -73,8 +73,8 @@
           </div>
         </div>
         <div class="bento-content">
-          <h3>Hierarchical Evaluation</h3>
-          <p>Novel 4-level scoring: exact → synonym → fuzzy → SOC match. 3,645 decontaminated evaluation samples. <code>Gemmra-Bench</code></p>
+          <h3>Gemmra-Bench <span class="bench-badge">v1.0</span></h3>
+          <p>Novel 4-level hierarchical scoring: exact → synonym → fuzzy → SOC match. 3,645 decontaminated evaluation samples across 4 PV tasks. <code>Open Benchmark</code></p>
         </div>
       </div>
 
@@ -263,6 +263,19 @@
     border-radius: 4px;
     font-size: 0.9em;
     border: 1px solid var(--border-subtle);
+  }
+
+  .bench-badge {
+    display: inline-block;
+    font-size: 0.55em;
+    font-weight: 500;
+    color: var(--accent-secondary);
+    border: 1px solid var(--accent-secondary);
+    border-radius: var(--radius-full);
+    padding: 1px 8px;
+    vertical-align: middle;
+    letter-spacing: 0.03em;
+    margin-left: 6px;
   }
 
   /* Visuals Area */
